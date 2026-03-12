@@ -1,0 +1,86 @@
+/*Login*/
+/*-------------------------------------------------*/
+.grb-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0.5rem;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+    background: var(--fondo);
+}
+
+.login-footer {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--gray-300);
+    text-align: center;
+}
+
+/*Card Login*/
+/*-------------------------------------------------*/
+.card-login {
+    background: var(--card-bg);
+    border: 0.1rem solid var(--card-border);
+    border-radius: 0.5rem;
+    padding: 1.6rem 1.3rem;
+    box-shadow: 0 1rem 2.2rem rgba(0,0,0,0.4);
+}
+
+.card-login-header {
+    justify-items: center;
+    margin-bottom: 1.3rem;
+}
+
+    .card-login-header h2 {
+        margin-top: 0.6rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--texto);
+        text-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.4);
+    }
+
+.card-login-footer {
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+    .card-login-footer * { 
+        color: var(--footer-text);
+        font-size: 0.8rem;
+    }
+
+    .card-login-footer a { 
+        color: var(--footer-link);
+    }
+
+    .card-login-footer a:hover { 
+        color: var(--footer-link-hover);
+    }
+
+
+.grb-logo {
+    height: 55px;
+    border-radius: 50%;
+}
+
+.login-validation-summary {
+    color: var(--red-light);
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+}
+
+.login-validation-error {
+    display: block;
+    color: var(--red-light);
+    font-size: 0.7rem;
+    margin-top: -0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+
+

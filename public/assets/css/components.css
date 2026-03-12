@@ -1,0 +1,117 @@
+/*Input*/
+/*-------------------------------------------------*/
+.grb-input {
+    width: 100%;
+    margin-bottom: 0.6rem;
+    background: var(--card-bg);
+    border: 0.1rem solid var(--card-border);
+    outline: none;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--texto);
+    border-radius: 0.3rem;
+    transition: border-color .5s ease;
+}
+
+    .grb-input:focus, .grb-input:hover {
+        background-color: var(--shadow-dark);
+        border-color: var(--blue-base);
+        color: var(--color-white);
+    }
+/*-------------------------------------------------*/
+
+/*Boton*/
+/*-------------------------------------------------*/
+.grb-btn {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #333;
+    background-color: #f5f5f5;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.3rem;
+    transition: background-position .1s linear;
+}
+
+    .grb-btn:hover {
+        text-decoration: none;
+    }
+
+    .grb-btn:disabled,
+    .grb-btn.grb-btn--disabled {
+        opacity: .6;
+        cursor: not-allowed;
+    }
+
+.grb-btn-large {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+}
+
+.grb-btn-block {
+    display: block;
+    width: 100%;
+}
+
+/*azul*/
+.grb-btn-primary {
+    color: var(--texto);
+    background-color: var(--blue-base);
+    background-image: var(--blue-grad);
+    border-color: var(--blue-dark);
+}
+
+    .grb-btn-primary:hover {
+        background-image: var(--blue-grad-brillo);
+    }
+
+/*verde*/
+.grb-btn-success {
+    color: var(--texto);
+    background-color: var(--green-base);
+    background-image: var(--green-grad);
+    border: 0.1rem solid var(--green-dark);
+    text-shadow: 0 -0.1rem 0 rgba(0,0,0,.35);
+}
+
+    .grb-btn-success:hover {
+        color: var(--texto);
+        background-image: linear-gradient(to bottom, #36a86f, #267a42);
+    }
+
+    .grb-btn-success:active,
+    .grb-btn-success.active {
+        background-color: #26713e;
+        box-shadow: inset 0 0.1rem 0.3rem rgba(0,0,0,.4);
+    }
+
+    .grb-btn-success.disabled,
+    .grb-btn-success[disabled] {
+        background-image: none;
+        background-color: #2f8f4e;
+        opacity: .65;
+        cursor: not-allowed;
+    }
+
+/*rojo*/
+.grb-btn-danger {
+    color: var(--texto);
+    background-color: var(--red-base);
+    background-image: var(--red-grad);
+    border: 0.1rem solid var(--red-dark);
+    text-shadow: 0 -0.1rem 0 rgba(0,0,0,.35);
+}
+
+    .grb-btn-danger:hover {
+        color: var(--texto);
+        background-image: linear-gradient(to bottom, #e15c5c, #c73434);
+    }
+
+
+
+
