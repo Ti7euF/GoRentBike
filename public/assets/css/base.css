@@ -181,12 +181,32 @@ img, button {
 	min-height: 100vh;
 }
 
+.btn-cart {
+    position: fixed;
+    bottom: 1.1rem;
+    right: 1.1rem;
+    background: var(--blue-grad);
+    color: var(--texto);
+    border: 0.1rem solid var(--card-border);
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 999999;
+    line-height: 1;
+}
+
+.btn-cart:hover {
+    background: var(--blue-grad-brillo);
+}
+
 /* Contenido principal */
 .main {
 	grid-row: 2;
 	display:grid;
 	grid-template-rows: auto auto 1fr;
 	align-self: center;
+    justify-items: center;
 	margin: 0.7rem;
 }
 

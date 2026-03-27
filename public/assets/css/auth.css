@@ -8,7 +8,6 @@
     width: 100%;
     min-height: 100vh;
     padding: 0.5rem;
-    font-family: 'Open Sans', sans-serif;
     overflow: hidden;
     background: var(--fondo);
 }
@@ -23,6 +22,7 @@
 /*Card Login*/
 /*-------------------------------------------------*/
 .card-login {
+    max-width: 380px;
     background: var(--card-bg);
     border: 0.1rem solid var(--card-border);
     border-radius: 0.5rem;
@@ -34,6 +34,12 @@
     justify-items: center;
     margin-bottom: 1.3rem;
 }
+
+    .card-login-header a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .card-login-header h2 {
         margin-top: 0.6rem;
@@ -67,19 +73,19 @@
     border-radius: 50%;
 }
 
-.login-validation-summary {
+.validation {
+    display: none;
     color: var(--red-light);
     font-size: 0.8rem;
-    margin-bottom: 0.6rem;
+    margin-top: 0.5rem;
     text-align: center;
 }
 
-.login-validation-error {
-    display: block;
+.error {
     color: var(--red-light);
-    font-size: 0.7rem;
-    margin-top: -0.3rem;
+    font-size: 0.8rem;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 

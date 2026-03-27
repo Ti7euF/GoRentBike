@@ -4,16 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 
-// Ruta principal → HomeController@index
+//ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
+//           "/..." indica la ruta que parecerá en el navegador
+//           "[PruebaController::class, 'metodo']" indica a qué metodo de qué controlador se llama
+//           "name('prueba')" indica el nombre o alias a usar
+
+// Ruta principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login.post');
 
 // Registro
 Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'store']);
+Route::post('/register', [AuthController::class, 'createUserAccount'])->name('register.post');
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

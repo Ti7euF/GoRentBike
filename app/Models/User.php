@@ -2,47 +2,81 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+class User
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    private ?int $idUser;
+    private int $idRole;
+    private string $firstName;
+    private string $lastName;
+    private string $email;
+    private string $password;
+    private bool $active;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function __construct(array $data)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $this->idUser = $data['idUser'] ?? null;
+        $this->idRole = $data['idRole'];
+        $this->firstName = $data['firstName'];
+        $this->lastName = $data['lastName'];
+        $this->email = $data['email'];
+        $this->password = $data['password'];
+        $this->active = (bool)$data['active'];
+    }
+
+    //Getters
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function getIdRole(): int
+    {
+        return $this->idRole;
+    }
+
+    public function getfirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getlastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    //Setters
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setActivo(bool $active): void
+    {
+        $this->active = $active;
     }
 }

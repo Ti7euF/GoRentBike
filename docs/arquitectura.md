@@ -42,7 +42,6 @@ Se desarrolla con el enfoque "Mobile First" y se utilizan media queries para ada
 | **PHP 8.2**      | Lenguaje backend que ejecuta la aplicación y la lógica del servidor. |
 | **MySQL**        | Base de datos relacional para almacenar usuarios, bicicletas, reservas y mantenimientos. |
 | **Blade**		   | Motor de plantillas para generar vistas dinámicas y reutilizables. |
-# | **Vite**         | Compilación y optimización de assets (CSS, JS) en desarrollo y producción. |
 | **HTML5**        | Estructura semántica del contenido de la aplicación. |
 | **CSS3**         | Estilos, diseño visual y adaptación responsive. |
 | **JavaScript**   | Interactividad en el frontend (menús, validaciones, componentes dinámicos). |

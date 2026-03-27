@@ -1,77 +1,4 @@
-/* -------------------------------------------------- */
-/* Botones filtros */
-.filtros {
-	display: flex;
-    justify-content: center;
-	gap: 1rem;
-    margin-top: 0.7rem;
-}
-
-.filtros input[type="radio"] {
-	display: none;
-}
-
-.filtro {
-	position: relative;
-	top: 0;
-
-	padding: 0.7rem 1.2rem;
-	margin-bottom: 1rem;
-
-	cursor: pointer;
-	user-select: none;
-
-	font-weight: 700;
-
-	color: var(--texto);
-	text-shadow: 1px 1px 0 rgba(255,255,255,.35), -1px -1px 0 rgba(0,0,0,.35);
-
-	background-image: var(--blue-grad);
-	border: 2px solid var(--primario);
-	border-radius: 8px / 50%;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,55%),
-		0px 2px 0px hsl(220,85%,52%),
-		0px 3px 0px hsl(220,85%,50%),
-		0px 4px 0px hsl(220,85%,48%),
-		0px 5px 0px hsl(220,85%,46%),
-		0px 6px 0px hsl(220,85%,44%),
-		0px 7px 0px hsl(220,85%,42%),
-		0px 8px 0px hsl(220,85%,40%),
-		0px 9px 0px hsl(220,85%,38%),
-		0px 10px 0px hsl(220,85%,30%),
-		0px 11px 10px rgba(0,0,0,.45),
-		inset 0px -5px 6px rgba(120,160,255,.35);
-
-	transition: top 0.12s ease, box-shadow 0.12s ease;
-}
-
-.filtro:hover {
-	top: 4px;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,52%),
-		0px 2px 0px hsl(220,85%,48%),
-		0px 3px 0px hsl(220,85%,45%),
-		0px 4px 0px hsl(220,85%,42%),
-		0px 5px 0px hsl(220,85%,38%),
-		0px 6px 0px hsl(220,85%,30%),
-		0px 7px 10px rgba(0,0,0,.45),
-		inset 0px -5px 6px rgba(120,160,255,.35);
-}
-
-input[type="radio"]:checked + .filtro {
-	top: 0.5rem;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,40%),
-		0px 2px 0px hsl(220,85%,32%),
-		0px 3px 10px rgba(0,0,0,.45),
-		inset 0px -4px 5px rgba(120,160,255,.3);
-}
-
-.bicicletas {
+#group-bikes {
 	display: grid;
     grid-template-columns: 1fr;
 	gap: 1.2rem;
@@ -80,19 +7,15 @@ input[type="radio"]:checked + .filtro {
 	
 /* Tablet */
 @media (min-width: 769px) {
-    .filtros {
-        justify-content: start;
-    }
-
-    .bicicletas {
-        grid-template-columns: repeat(3, 1fr);
+    #group-bikes {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 /* Escritorio */
 @media (min-width: 1025px) {
-  .bicicletas {
-    grid-template-columns: repeat(4, 1fr);
+  #group-bikes {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 /* -------------------------------------------------- */
@@ -108,24 +31,46 @@ input[type="radio"]:checked + .filtro {
 	padding: 0.7rem;
 }
 
-	.card img {
+	.card .slideshow {
+		position: relative;
 		width: 100%;
-		height: 350px;
-		object-fit: cover;
-		object-position: center;
+		aspect-ratio: 4 / 3;
 		border-radius: 0.4rem;
-		background: transparent;
-		display: block;
+		overflow: hidden;
 	}
 
-		.card:hover img {
+		.card .slideshow img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+    		height: 100%;
+			object-fit: cover;
+			object-position: center;
+			opacity: 0;
+			transition: opacity 0.6s ease-in-out;
+		}
+
+		.slideshow img.show {
+			opacity: 1;
+		}
+
+		.slideshow img.hide {
+			opacity: 0;
+		}
+
+		.card:hover .slideshow img.show {
 			filter: brightness(1.1);
 		}
 
-	.card h4 {
+
+	.card .name {
 		margin-top: 0.4rem;
 		margin-bottom: 0;
 		line-height: 1.2;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.card .especs {
@@ -141,6 +86,9 @@ input[type="radio"]:checked + .filtro {
 		background: rgba(255,255,255,0.04);
 		padding: 0.4rem 0.7rem;
 		border-radius: 0.4rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+    	overflow: hidden;
 		text-align: left;
 	}
 
@@ -160,13 +108,14 @@ input[type="radio"]:checked + .filtro {
 			background: var(--spec-naranja);
 		}
 
-	.card .precio {
+	.card .price {
 		margin-top: 0.6rem;
 		font-weight: 600;
 		font-size: 0.98rem;
+		text-align: center;
 	}
 
-	.card .disponibilidad {
+	.card .add-cart {
 		background-color: grey;
 		border-radius: 0.4rem;
 		text-align: center;
@@ -175,11 +124,22 @@ input[type="radio"]:checked + .filtro {
 		margin-top: 0.5rem;
 	}
 
+		.card .add-cart a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 100%;
+			height: 100%;
+			padding: 0.2rem;
+		}
+
+
 	.card:hover {
 		background: var(--card-bg-hover);
 		border-color: var(--card-border-hover);
 	}
 
-	.card:hover .disponibilidad {
+	.card:hover .add-cart {
 		background-color: rgba(46, 204, 113, 0.25);
 	}

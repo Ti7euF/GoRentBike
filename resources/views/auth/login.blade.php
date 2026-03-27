@@ -4,20 +4,25 @@
 @section('content')
     <section class="card-login">
         <header class="card-login-header">
-            	<img src="assets/img/logo/logo-dark.png" alt="Go Rent Bike" class="grb-logo logo-dark">
-		        <img src="assets/img/logo/logo-light.png"  alt="Go Rent Bike" class="grb-logo logo-light">
+            <a href="{{ route('home') }}"><img src="assets/img/logo/logo-dark.webp" alt="Go Rent Bike" class="grb-logo logo-dark"></a>
+		    <a href="{{ route('home') }}"><img src="assets/img/logo/logo-light.webp"  alt="Go Rent Bike" class="grb-logo logo-light"></a>
             <h2>Iniciar sesión</h2>
         </header>
 
         <section class="card-login-body">
-            <form action="/login" method="post">
-                <input name="email" class="grb-input p-2" placeholder="Email" required />
-                <input name="password" type="password" class="grb-input p-2" placeholder="Contraseña" required />
+            @if(session('error'))
+                <p class="error">{{ session('error') }}</p>
+            @endif
+            <form action="{{ route('login.post') }}" method="post">
+                @csrf
+                <input name="email" type="text" class="grb-input" placeholder="Email" maxlength="100" minlength="1" required />
+                <input name="password" type="password" class="grb-input" placeholder="Contraseña" maxlength="30" required />
                 <button type="submit" class="grb-btn grb-btn-primary grb-btn-block grb-btn-large">Acceder</button>
+                
             </form>
         </section>
         <footer class="card-login-footer">
-            <p>¿No tienes cuenta? <a href="#">Regístrate.</a></p>
+            <p>¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate.</a></p>
         </footer>
     </section>
     <p class="login-footer"><script>document.write(new Date().getFullYear())</script> © Go Rent Bike</p>

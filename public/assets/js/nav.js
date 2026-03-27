@@ -1,3 +1,4 @@
+//Menu hamburguesa en móvil
 const toggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -16,3 +17,41 @@ document.addEventListener('click', (e) => {
 		mobileMenu.classList.remove('activo');
 	}
 });
+
+
+//Menú desplegable para el usuario
+const userMenu = document.querySelector('.user-menu');
+
+if (userMenu) {
+    userMenu.addEventListener('click', () => {
+    userMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+    if (!userMenu.contains(e.target)) {
+        userMenu.classList.remove('active');
+    }
+    });
+}
+
+document.querySelectorAll('[name="logout"]').forEach(el => {
+    el.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('form-logout').submit();
+    });
+});
+
+
+//Cambiar el tema light/dark
+function toggleTheme() {
+    const html = document.documentElement;
+    const isLight = html.classList.contains('light');
+
+    if (isLight) {
+        html.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        html.classList.add('light');
+        localStorage.setItem('theme', 'light');
+    }
+}

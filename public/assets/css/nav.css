@@ -11,14 +11,62 @@
 
 	.nav > ul li {
 		background: var(--blue-grad);
-		padding: 0.7rem;
 		border: 0.1rem solid var(--card-border);
 		border-radius: 0 0 0.3rem 0.3rem;
+	}
+
+	.nav > ul > li > a {
+		display: flex;
+		align-items: center;
+		gap:0.5rem;
+		width: 100%;
+		height: 100%;
+		padding: 0.7rem 1rem;
+	}
+
+
+	.nav > ul > li:last-child {
+		padding: 0rem 2rem;
+		cursor: pointer;
 	}
 
     .nav > ul li:hover{
         background-image:var(--blue-grad-brillo);
     }
+
+	.nav .user-menu {
+		position: relative;
+		align-content: center;
+	}
+
+	.nav .user-menu .dropdown {
+		display: none;
+		position: absolute;
+		width: 100%;
+		top: 100%;
+		right: 0;
+		list-style: none;
+		background: white;
+		border-top: 1px solid #ccc;
+	}
+
+		.nav .user-menu .dropdown li {
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.nav .user-menu .dropdown li a {
+			display: flex;
+			align-items: center;
+    		justify-content: center;
+			width: 100%;
+			height: 100%;
+			padding: 0.7rem 0;
+		}
+
+	.nav .user-menu.active .dropdown {
+		display: block;
+	}
 
 /* -------------------------------------------------- */
 /* Barra de navegación móvil */
@@ -72,8 +120,13 @@
 	color: var(--texto);
 }
 
-.mobile-user > i{
+.mobile-user > a{
 	color: var(--red-base);
+	font-size: 1.5rem;
+}
+
+.mobile-user > a > .fa-sign-in{
+	color: var(--green-base);
 	font-size: 1.5rem;
 }
 

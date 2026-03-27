@@ -3,104 +3,50 @@
 @section('title', 'Alquiler de bicicletas - Go Rent Bike')
 
 @push('styles')
+<link rel="stylesheet" href="/assets/css/components.css">
 <link rel="stylesheet" href="/assets/css/bikes.css">
 @endpush
 
 @section('content')
 
-<section class="titulo">
-	<h2>Alquiler de bicicletas</h2>
 <section>
+<header class="titulo">
+	<h2>Alquiler de bicicletas</h2>
+</header>
 
-<aside class="filtros">
-    <input type="radio" name="tipo" id="montana" checked>
-    <label for="montana" class="filtro">Montaña</label>
+<div class="control-bar">
+    <fieldset class="group-filters">
+        <input type="radio" name="bike-type" id="all" checked>
+        <label for="all" class="filter">Todas</label>
 
-    <input type="radio" name="tipo" id="carretera">
-    <label for="carretera" class="filtro">Carretera</label>
-</aside>
+        <input type="radio" name="bike-type" id="mountain">
+        <label for="mountain" class="filter">Montaña</label>
 
-<section class="bicicletas">
-	<article class="card">
-		<img src="/assets/img/ScottSpark2.png">
-		<h4 class="nombre">Scott Spark 1</h4>
-		<div class="especs">
-			<span>Suspensión doble</span>
-			<span>Cubiertas Maxxis</span>
-			<span>SRAM 12 vel.</span>
-			<span>Tija ajustable</span>
-		</div>
-		<div class="precio">
-			<span>1 día: </span><span>40 €</span>
-		</div>
-		<div class="disponibilidad">
-			<a href="#"><span>1 disponible</span></a>
-		</div>
-	</article>
-	<article class="card">
-		<img src="/assets/img/ScottSpark2.png">
-		<h4 class="nombre">Scott Spark 1</h4>
-		<div class="especs">
-			<span>Suspensión doble</span>
-			<span>Cubiertas Maxxis</span>
-			<span>SRAM 12 vel.</span>
-			<span>Tija ajustable</span>
-		</div>
-		<div class="precio">
-			<span>1 día: </span><span>40 €</span>
-		</div>
-		<div class="disponibilidad">
-			<a href="#"><span>1 disponible</span></a>
-		</div>
-	</article>
-	<article class="card">
-		<img src="/assets/img/ScottSpark2.png">
-		<h4 class="nombre">Scott Spark 1</h4>
-		<div class="especs">
-			<span>Suspensión doble</span>
-			<span>Cubiertas Maxxis</span>
-			<span>SRAM 12 vel.</span>
-			<span>Tija ajustable</span>
-		</div>
-		<div class="precio">
-			<span>1 día: </span><span>40 €</span>
-		</div>
-		<div class="disponibilidad">
-			<a href="#"><span>1 disponible</span></a>
-		</div>
-	</article>
-	<article class="card">
-		<img src="/assets/img/ScottSpark2.png">
-		<h4 class="nombre">Scott Spark 1</h4>
-		<div class="especs">
-			<span>Suspensión doble</span>
-			<span>Cubiertas Maxxis</span>
-			<span>SRAM 12 vel.</span>
-			<span>Tija ajustable</span>
-		</div>
-		<div class="precio">
-			<span>1 día: </span><span>40 €</span>
-		</div>
-		<div class="disponibilidad">
-			<a href="#"><span>1 disponible</span></a>
-		</div>
-	</article>
-	<article class="card">
-		<img src="/assets/img/ScottSpark2.png">
-		<h4 class="nombre">Scott Spark 1</h4>
-		<div class="especs">
-			<span>Suspensión doble</span>
-			<span>Cubiertas Maxxis</span>
-			<span>SRAM 12 vel.</span>
-			<span>Tija ajustable</span>
-		</div>
-		<div class="precio">
-			<span>1 día: </span><span>40 €</span>
-		</div>
-		<div class="disponibilidad">
-			<a href="#"><span>1 disponible</span></a>
-		</div>
-	</article>
+        <input type="radio" name="bike-type" id="road">
+        <label for="road" class="filter">Carretera</label>
+    </fieldset>
+
+    <div class="order">
+        <span class="order-label">Ordenar por precio:</span>
+
+        <button class="order-btn" data-sort="asc" title="Más barato primero">
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+        </button>
+
+        <button class="order-btn" data-sort="desc" title="Más caro primero">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+        </button>
+    </div>
+</div>
+
+<div id="group-bikes">
+    @include('home.bikes')
+</div>
+
+@include('_partials.pagination', [
+    'currentPage' => $currentPage,
+    'totalPages' => $totalPages
+])
 </section>
-
+<script src="/assets/js/index.js"></script>
 @endsection
