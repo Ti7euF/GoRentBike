@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
+//           "view" es para rutas estáticas
 //           "/..." indica la ruta que parecerá en el navegador
 //           "[PruebaController::class, 'metodo']" indica a qué metodo de qué controlador se llama
 //           "name('prueba')" indica el nombre o alias a usar
@@ -22,6 +23,12 @@ Route::post('/register', [AuthController::class, 'createUserAccount'])->name('re
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Legal
+Route::view('/about-us', 'legal.about-us')->name('about-us');
+Route::view('/privacy', 'legal.privacy')->name('privacy');
+Route::view('/contact', 'legal.contact')->name('contact');
+Route::view('/cookies', 'legal.cookies')->name('cookies');
 
 // // Usuarios (solo si estás logueado)
 // Route::middleware('auth')->group(function () {

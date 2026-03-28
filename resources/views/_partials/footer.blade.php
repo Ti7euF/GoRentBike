@@ -5,21 +5,21 @@
 
 <ul>
     <li><h4>Go Rent Bike</h4></li>
-    <li><a href="#">Bicicletas</a></li>
+    <li><a href="{{ route('home') }}">Bicicletas</a></li>
     <li><a href="#">Accesorios</a></li>
     <li><a href="#">Preguntas frecuentes</a></li>
 </ul>
 
 <ul>
     <li><h4>Quiénes somos</h4></li>
-    <li><a href="#">Quiénes somos</a></li>
-    <li><a href="#">Privacidad</a></li>
+    <li><a href="{{ route('about-us') }}">Quiénes somos</a></li>
+    <li><a href="{{ route('privacy') }}">Privacidad</a></li>
 </ul>
 
 <ul>
     <li><h4>Contactar</h4></li>
-    <li><a href="#">Contacto y ayuda</a></li>
-    <li><a href="#">Política de cookies</a></li>
+    <li><a href="{{ route('contact') }}">Contacto y ayuda</a></li>
+    <li><a href="{{ route('cookies') }}">Política de cookies</a></li>
 </ul>
 
 <div class="copyright">

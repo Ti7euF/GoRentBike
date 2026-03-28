@@ -33,7 +33,6 @@
             <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
             <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
             <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
-            <li><a href="#"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
             <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
         </ul>
 	</nav>
@@ -41,7 +40,6 @@
         <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
         <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
         <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
-        <li><a href="#"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
         <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
 
         @if(session()->has('userId'))

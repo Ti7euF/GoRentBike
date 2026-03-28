@@ -1,0 +1,140 @@
+.legal-page {
+  max-width: 100%;
+  padding: 1rem;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+/* Header principal */
+.legal-page .titulo {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.legal-page .titulo h2 {
+  font-size: 1.8rem;
+  color: var(--blue-base);
+}
+
+.legal-page .logo {
+    justify-items: center;
+    margin-top: 1rem;
+}
+
+.legal-page .logo img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+}
+
+.legal-page article {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.legal-page article section {
+  background: rgba(255,255,255,0.05);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+
+.legal-page article section:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Subtítulos internos */
+.legal-page h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--blue-dark);
+  border-bottom: 1px solid var(--gray-300);
+  padding-bottom: 0.25rem;
+}
+
+/* Texto */
+.legal-page p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: var(--texto);
+}
+
+/* Listas */
+.legal-page ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.legal-page li {
+  margin-bottom: 0.4rem;
+}
+
+/* Enlaces */
+.legal-page a {
+  color: var(--blue-base);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legal-page a:hover {
+  color: var(--blue-light);
+  text-decoration: underline;
+}
+
+/* Address */
+.legal-page address {
+  font-style: normal;
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.legal-page address p {
+  margin: 0.5rem 0;
+}
+
+.legal-page address i {
+    margin-right: 0.5rem;
+    color: var(--blue-base);
+}
+
+
+/* Tablet */
+@media (min-width: 768px) {
+  .legal-page {
+    padding: 2rem;
+  }
+
+  .legal-page .titulo h2 {
+    font-size: 2rem;
+  }
+
+  .legal-page h2 {
+    font-size: 1.5rem;
+  }
+
+  .legal-page article section {
+    padding: 1.25rem;
+  }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+  .legal-page {
+    max-width: 1200px;
+    padding: 2rem;
+  }
+
+  .legal-page .titulo h2 {
+    font-size: 2.2rem;
+  }
+
+  .legal-page h2 {
+    font-size: 1.6rem;
+  }
+
+  .legal-page article section {
+    padding: 1.5rem;
+  }
+}

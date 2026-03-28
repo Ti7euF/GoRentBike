@@ -14,7 +14,7 @@
             }
         </script>
 
-        <link rel="icon" type="image/png" href="/assets/img/logo/logo-dark.png">
+        <link rel="icon" type="image/webp" href="/assets/img/logo/logo-dark.webp">
         
         <link rel="stylesheet" href="/assets/css/base.css">
         <link rel="stylesheet" href="/assets/css/nav.css">
