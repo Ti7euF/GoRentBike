@@ -21,10 +21,19 @@ class HomeController extends Controller
         $page = (int) $request->input('page', 1);
         $filter = $request->input('filter', 'all');
         $sort = $request->input('sort', 'asc');
+        $startDate = $request->input('startDate', date('Y-m-d'));
+        $endDate = $request->input('endDate', date('Y-m-d', strtotime('+1 day')));
+
+        if ($startDate < date('Y-m-d')) {
+            $startDate = date('Y-m-d');
+        }
+        if ($endDate <= $startDate) {
+            $endDate = date('Y-m-d', strtotime('+1 day'));
+        }
 
         $offset = ($page - 1) * $limit;
 
-        $bikes = $this->repo->getAvailableBikes($offset, $limit, $filter, $sort);
+        $bikes = $this->repo->getAvailableBikes($offset, $limit, $filter, $sort, $startDate, $endDate);
         $bikeIds = array_map(fn($b) => $b->getIdBike(), $bikes);
         $imagesByBike = $this->repo->getBikesImagesByIds($bikeIds);
 
@@ -32,7 +41,7 @@ class HomeController extends Controller
             $bike->setImages($imagesByBike[$bike->getIdBike()] ?? []);
         }
 
-        $totalBikes = $this->repo->countAvailableBikes($filter);
+        $totalBikes = $this->repo->countAvailableBikes($filter, $startDate, $endDate);
         $totalPages = ceil($totalBikes / $limit);
         $currentPage = $page;
 
@@ -43,6 +52,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return view('home.index', ['page' => $page, 'limit' => $limit, 'bikes' => $bikes, 'totalPages' => $totalPages, 'currentPage' => $currentPage]);
+        return view('home.index', ['page' => $page, 'limit' => $limit, 'bikes' => $bikes, 'totalPages' => $totalPages, 'currentPage' => $currentPage, 
+        'startDate' => $startDate, 'endDate' => $endDate]);
     }
 }

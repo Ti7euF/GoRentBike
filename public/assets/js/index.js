@@ -1,34 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let filter = document.querySelector('input[name="bike-type"]:checked')?.id ?? "all";
-    let sort = "asc";
     let currentPage = 1;
 
     const radios = document.querySelectorAll('input[name="bike-type"]');
+    const startInput = document.getElementById('startDate');
+    const endInput = document.getElementById('endDate');
     const orderButtons = document.querySelectorAll(".order-btn");
 
-    //Cuando se cambia un filtro
+    //Evento cambio filtro
     radios.forEach(radio => {
         radio.addEventListener("change", () => {
-            filter = radio.id;
             currentPage = 1;
-            loadBikes(currentPage, filter, sort);
+            loadBikes();
         });
     });
 
-    //Cuando se ordena: se actualiza la variable, se cambia el elemento activo y loadBikes
+    //Evento cambio fecha
+    startInput.addEventListener("change", () => {
+        if (startInput.value >= endInput.value) {
+            const newEnd = new Date(startInput.value);
+            newEnd.setDate(newEnd.getDate() + 1);
+            endInput.value = newEnd.toISOString().split('T')[0];
+        }
+
+        endInput.min = startInput.value;
+        currentPage = 1;
+        loadBikes();
+    });
+
+    endInput.addEventListener("change", () => {
+        currentPage = 1;
+        loadBikes();
+    });
+
+    //Evento ordenación: se actualiza la variable, se cambia el elemento activo y loadBikes
     orderButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            sort = btn.dataset.sort;
-
             orderButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-
-            loadBikes(currentPage, filter, sort);
+            currentPage = 1;
+            loadBikes();
         });
     });
 
-    function loadBikes(page, filter, sort) {
-        const url = `/?page=${page}&filter=${filter}&sort=${sort}`;
+    function loadBikes() {
+        const filter = document.querySelector('input[name="bike-type"]:checked')?.id ?? "all";
+        const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "asc";
+        const startDate = startInput.value;
+        const endDate = endInput.value;
+        
+        const url = `/?page=${currentPage}&filter=${filter}&sort=${sort}&startDate=${startDate}&endDate=${endDate}`;
 
         fetch(url, {
             method: "GET",
@@ -45,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //Cuando se cambia de página
     window.changePage = function(page) {
         currentPage = page;
-        loadBikes(page, filter, sort);
+        loadBikes();
     };
 });
 

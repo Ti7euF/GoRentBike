@@ -1,0 +1,78 @@
+/* -------------------------------------------------- */
+/* Carrito */
+.cart-container {
+    width: 100%;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    color: var(--texto);
+}
+
+.cart-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.cart-title {
+    font-size: 1.5rem;
+    color: var(--blue-light);
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+}
+
+.cart-empty i {
+    font-size: 2.5rem;
+    color: var(--gray-500);
+    margin-bottom: 0.5rem;
+}
+
+/* -------------------------------------------------- */
+.cart-actions {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.cart-table-wrapper {
+    overflow-x: auto;
+}
+
+.bike-name {
+    font-size: 1rem;
+    color: var(--blue-light);
+}
+
+.bike-type,
+.cart-date {
+    font-size: 0.85rem;
+    color: var(--texto);
+}
+
+.cart-date .discount {
+    background-color: var(--green-light);
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+    padding: 0.2rem 0.3rem;
+}
+
+.cart-date .total-price {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+
+@media (min-width: 768px) {
+    .cart-actions {
+        text-align: right;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cart-container {
+        width: 70%;
+    }
+}

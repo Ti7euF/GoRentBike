@@ -30,9 +30,10 @@
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    color: #333;
-    background-color: #f5f5f5;
-    border: 0.1rem solid #ccc;
+    color: var(--texto);
+    background-color: var(--blue-base);
+    background-image: var(--blue-grad);
+    border: 0.1rem solid var(--blue-dark);
     border-radius: 0.3rem;
     transition: background-position .1s linear;
 }
@@ -58,21 +59,12 @@
     width: 100%;
 }
 
-/*azul*/
-.grb-btn-primary {
-    color: var(--texto);
-    background-color: var(--blue-base);
-    background-image: var(--blue-grad);
-    border-color: var(--blue-dark);
-}
-
-    .grb-btn-primary:hover {
+    .grb-btn:hover {
         background-image: var(--blue-grad-brillo);
     }
 
 /*verde*/
 .grb-btn-success {
-    color: var(--texto);
     background-color: var(--green-base);
     background-image: var(--green-grad);
     border: 0.1rem solid var(--green-dark);
@@ -80,7 +72,6 @@
 }
 
     .grb-btn-success:hover {
-        color: var(--texto);
         background-image: linear-gradient(to bottom, #36a86f, #267a42);
     }
 
@@ -100,7 +91,6 @@
 
 /*rojo*/
 .grb-btn-danger {
-    color: var(--texto);
     background-color: var(--red-base);
     background-image: var(--red-grad);
     border: 0.1rem solid var(--red-dark);
@@ -108,7 +98,6 @@
 }
 
     .grb-btn-danger:hover {
-        color: var(--texto);
         background-image: linear-gradient(to bottom, #e15c5c, #c73434);
     }
 
@@ -216,6 +205,28 @@ input[type="radio"]:checked + .filter {
 }
 
 /* -------------------------------------------------- */
+/* Select fechas */
+.date-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Inputs adaptados a la barra */
+.date-filter .grb-input {
+    width: auto;
+    min-width: 120px;
+    margin-bottom: 0;
+    padding: 0.4rem;
+    font-size: 0.75rem;
+}
+
+.date-filter span {
+    opacity: 0.6;
+}
+
+/* -------------------------------------------------- */
 /* Botones ordenación */
 .order {
     display: flex;
@@ -271,3 +282,118 @@ input[type="radio"]:checked + .filter {
     color: var(--texto);
 }
 
+
+/* -------------------------------------------------- */
+/* Tabla */
+.grb-table {
+    display: none;
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+}
+
+.grb-table th,
+.grb-table td {
+    padding: 0.7rem;
+    text-align: center;
+    justify-items: center;
+    font-size: 0.85rem;
+}
+
+.grb-table-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 0.4rem;
+    border: 1px solid var(--card-border);
+}
+
+/* -------------------------------------------------- */
+/* Card */
+.grb-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.grb-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.grb-card-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 0.4rem;
+    border: 1px solid var(--card-border);
+}
+
+.grb-card-info {
+    flex: 1;
+}
+
+.grb-card-title {
+    font-size: 1.1rem;
+    color: var(--blue-light);
+    margin-bottom: 0.2rem;
+}
+
+.grb-card-type {
+    font-size: 0.9rem;
+    color: var(--gray-300);
+    margin-bottom: 0.5rem;
+}
+
+.grb-card-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.8rem 0;
+}
+
+.grb-card-details li {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+@media (min-width: 768px) {
+    .grb-cards {
+        display: none;
+    }
+
+    .grb-table {
+        display: table;
+        width: 100%;
+        margin: auto;
+    }
+
+    .grb-card-title {
+        font-size: 1.8rem;
+    }
+
+    .grb-card-img {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grb-table {
+        width: 100%;
+    }
+
+    .grb-card-title {
+        font-size: 2rem;
+    }
+
+    .grb-card-img {
+        width: 120px;
+        height: 120px;
+    }
+}

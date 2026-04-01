@@ -1,0 +1,18 @@
+.reservation-result {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 1rem;
+}
+
+.reservation-result .success {
+    color: var(--green-base);
+}
+
+.reservation-result .error {
+    color: var(--red-base);
+}
+
+.grb-btn {
+    margin-top: 1rem;
+}

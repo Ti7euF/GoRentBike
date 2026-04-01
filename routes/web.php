@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
@@ -29,6 +30,15 @@ Route::view('/about-us', 'legal.about-us')->name('about-us');
 Route::view('/privacy', 'legal.privacy')->name('privacy');
 Route::view('/contact', 'legal.contact')->name('contact');
 Route::view('/cookies', 'legal.cookies')->name('cookies');
+
+//Carrito
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::view('/cart/reservation', 'cart.reservation')->name('reservation');
+
+
 
 // // Usuarios (solo si estás logueado)
 // Route::middleware('auth')->group(function () {

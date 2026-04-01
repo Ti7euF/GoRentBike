@@ -19,35 +19,30 @@ class Bike
     private ?string $suspension;
     private ?string $tires;
     private ?string $seatpost;
+    private ?string $path;
+    private ?string $startDate = null;
+    private ?string $endDate = null;
+    private int $rentalDays = 0;
+    private int $discount = 0;
+    private ?float $totalPrice = 0;
 
     private array $images = [];
 
-    public function __construct(array $data = []) {
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
-        }
+    public function __construct(
+        int $idBike = 0,
+        ?int $idStatusBike = null,
+        ?string $brand = null,
+        ?string $model = null,
+        ?string $type = null,
+        bool $active = true
+    ) {
+        $this->idBike = $idBike;
+        $this->idStatusBike = $idStatusBike;
+        $this->brand = $brand;
+        $this->model = $model;
+        $this->type = $type;
+        $this->active = $active;
     }
-
-    // public function __construct(array $data)
-    // {
-    //     $this->idBike = $data['idBike'] ?? null;
-    //     $this->idStatusBike = $data['idStatusBike'] ?? null;
-    //     $this->brand = $data['brand'] ?? null;
-    //     $this->model = $data['model'] ?? null;
-    //     $this->type = $data['type'] ?? null;
-    //     $this->amortizationPrice = isset($data['amortizationPrice']) ? (float)$data['amortizationPrice'] : null;
-    //     $this->dailyPrice = isset($data['dailyPrice']) ? (float)$data['dailyPrice'] : null;
-    //     $this->totalKm = isset($data['totalKm']) ? (float)$data['totalKm'] : null;
-    //     $this->active = isset($data['active']) ? (bool)$data['active'] : true;
-    //     $this->frame = $data['frame'] ?? null;
-    //     $this->gear = $data['gear'] ?? null;
-    //     $this->brakes = $data['brakes'] ?? null;
-    //     $this->suspension = $data['suspension'] ?? null;
-    //     $this->tires = $data['tires'] ?? null;
-    //     $this->seatpost = $data['seatpost'] ?? null;
-    // }
 
     public function getIdBike(): ?int { 
         return $this->idBike; 
@@ -153,6 +148,48 @@ class Bike
         $this->seatpost = $seatpost; 
     }
 
+    public function getPath(): ?string { 
+        return $this->path; 
+    }
+    public function setPath(?string $path): void { 
+        $this->path = $path; 
+    }
+
+    public function getStartDate(): ?string { 
+        return $this->startDate; 
+    }
+    public function setStartDate(?string $date) { 
+        $this->startDate = $date; 
+    }
+
+    public function getEndDate(): ?string { 
+        return $this->endDate; 
+    }
+    public function setEndDate(?string $date) { 
+        $this->endDate = $date; 
+    }
+
+    public function getRentalDays(): int {
+        return $this->rentalDays;
+    }
+    public function setRentalDays(int $rentalDays): void {
+        $this->rentalDays = $rentalDays;
+    }
+
+    public function getDiscount(): int {
+        return $this->discount;
+    }
+    public function setDiscount(int $discount): void {
+        $this->discount = $discount;
+    }
+
+    public function getTotalPrice(): float {
+        return $this->totalPrice;
+    }
+    public function setTotalPrice(float $totalPrice): void {
+        $this->totalPrice = $totalPrice;
+    }
+
     public function getImages(): array {
         return $this->images;
     }
@@ -162,5 +199,41 @@ class Bike
 
     public function addImage(array $image): void {
         $this->images[] = $image;
+    }
+
+    public function calculateRentalDays(): int {
+        if (!$this->startDate || !$this->endDate) {
+            return 0;
+        }
+
+        try {
+            $start = new \DateTime($this->startDate);
+            $end = new \DateTime($this->endDate);
+        } catch (\Exception $e) {
+            return 0;
+        }
+
+        return $start->diff($end)->days + 1;
+    }
+
+    public function calculateDiscount(int $days): int {
+        if ($days >= 6) {
+            return 50;
+        }
+
+        if ($days >= 3) {
+            return 30;
+        }
+
+        if ($days >= 1) {
+            return 15;
+        }
+
+        return 0;
+    }
+
+    public function calculateTotalPrice(): float {
+        $price = $this->rentalDays * $this->dailyPrice;
+        return $price - ($price * $this->discount / 100);
     }
 }

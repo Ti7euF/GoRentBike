@@ -38,10 +38,12 @@
             @include('_partials.footer')
         </footer>
 
-        <button class="btn-cart">
+        <a href="{{ route('cart.index') }}" class="btn-cart" aria-label="Abrir carrito">
             <i class="fa-solid fa-cart-shopping"></i>
-        </button>
+            <span id="cart-count">{{ count(session('cart', [])) }}</span>
+        </a>
 
+        <script src="/assets/js/jquery-4.0.0.min.js"></script>
         <script src="/assets/js/nav.js"></script>
     </body>
 </html>

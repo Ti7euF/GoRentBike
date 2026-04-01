@@ -1,6 +1,6 @@
 <div class="logo">
-    <img src="assets/img/logo/logo-dark.webp" class="logo-dark">
-	<img src="assets/img/logo/logo-light.webp" class="logo-light">
+    <img src="/assets/img/logo/logo-dark.webp" class="logo-dark">
+	<img src="/assets/img/logo/logo-light.webp" class="logo-light">
 </div>
 
 <ul>

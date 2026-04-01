@@ -187,18 +187,48 @@ img, button {
     right: 1.1rem;
     background: var(--blue-grad);
     color: var(--texto);
-    border: 0.1rem solid var(--card-border);
     padding: 1rem;
     border-radius: 50%;
     font-size: 1rem;
     cursor: pointer;
     z-index: 999999;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .btn-cart:hover {
     background: var(--blue-grad-brillo);
 }
+
+#cart-count {
+    position: absolute;
+    top: -0.3rem;
+    right: -0.3rem;
+    background: var(--red-base);
+    color: var(--texto);
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.2rem 0.45rem;
+    border-radius: 50%;
+    border: 2px solid var(--card-bg);
+    min-width: 1.2rem;
+    text-align: center;
+    line-height: 1;
+}
+
+@keyframes cart-badge-flash {
+    0% { transform: scale(1); background: var(--red-base); }
+    50% { transform: scale(1.25); background: var(--red-light); }
+    100% { transform: scale(1); background: var(--red-base); }
+}
+
+#cart-count.flash {
+    animation: cart-badge-flash 0.4s ease-in-out;
+}
+
 
 /* Contenido principal */
 .main {
