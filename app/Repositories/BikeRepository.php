@@ -35,8 +35,8 @@ class BikeRepository
                 FROM reservation r
                 WHERE r.idBike = bike.idBike
                 AND r.idReservationStatus = :status
-                AND r.startDate < :endDate
-                AND r.endDate > :startDate
+                AND r.startDate <= :endDate
+                AND r.endDate >= :startDate
             )";
 
             $params['status'] = 1;
@@ -150,7 +150,7 @@ class BikeRepository
     public function isBikeAvailable(int $bikeId, string $startDate, string $endDate): bool {
         $sql = "SELECT 1
                 FROM reservation
-                WHERE idBike = :bikeId AND idReservationStatus = :status AND startDate < :endDate AND endDate > :startDate
+                WHERE idBike = :bikeId AND idReservationStatus = :status AND startDate <= :endDate AND endDate >= :startDate
                 LIMIT 1";
 
         $params = [
@@ -211,7 +211,7 @@ class BikeRepository
     }
 
     public function getBikeById(int $id): ?Bike {
-        $sql = "SELECT b.idBike, idStatusBike, brand, model, type, dailyPrice, active, frame, gear, brakes, suspension, tires, seatpost, path
+        $sql = "SELECT b.idBike, idStatusBike, brand, model, type, dailyPrice, totalKm, active, frame, gear, brakes, suspension, tires, seatpost, path
                 FROM bike b
                 LEFT JOIN bike_image bi ON bi.idBike = b.idBike
                 WHERE b.idBike = ? AND bi.main = 1";
@@ -234,6 +234,7 @@ class BikeRepository
         );
 
         $bike->setDailyPrice($row['dailyPrice'] ?? null);
+        $bike->setTotalKm($row['totalKm'] ?? null);
         $bike->setFrame($row['frame'] ?? null);
         $bike->setGear($row['gear'] ?? null);
         $bike->setBrakes($row['brakes'] ?? null);
@@ -245,5 +246,23 @@ class BikeRepository
         return $bike;
     }
 
+    public function getKmBikeById(int $idBike): ?int {
+        $sql = "SELECT totalKm FROM bike WHERE idBike = :idBike";
+        $params = ['idBike' => $idBike];
 
+        $result = $this->db->query($sql, $params);
+
+        if (empty($result)) {
+            return null;
+        }
+
+        return (float)$result[0]['totalKm'];
+    }
+    
+    public function updateKmBike(int $idBike, float $km): ?int {
+        $sql = "UPDATE bike SET totalKm = :km WHERE idBike = :idBike";
+        $params = ['km' => $km, 'idBike' => $idBike];
+
+        return $this->db->execute($sql, $params);
+    }
 }
