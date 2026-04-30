@@ -18,7 +18,7 @@
     @endif
 
     {{-- <a href="{{ route('reservation.index') }}" class="btn">Ir a Mis Reservas</a> --}}
-    <a class="grb-btn grb-btn-success">
+    <a href="{{ route('reservation.index') }}" class="grb-btn grb-btn-success">
         <i class="fa-solid fa-calendar-check"></i> Ir a Mis Reservas
     </a>
 </section>

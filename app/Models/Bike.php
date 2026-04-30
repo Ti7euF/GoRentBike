@@ -236,4 +236,20 @@ class Bike
         $price = $this->rentalDays * $this->dailyPrice;
         return $price - ($price * $this->discount / 100);
     }
+
+    public function calculatePrice($startDate, $endDate) {
+        $this->setStartDate($startDate);
+        $this->setEndDate($endDate);
+
+        $days = $this->calculateRentalDays();
+        $this->setRentalDays($days);
+
+        $discount = $this->calculateDiscount($days);
+        $this->setDiscount($discount);
+
+        $priceWithDiscount = $this->calculateTotalPrice();
+        $this->setTotalPrice($priceWithDiscount);
+
+        return $priceWithDiscount;
+    }
 }

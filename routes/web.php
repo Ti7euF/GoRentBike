@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ReservationController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
@@ -35,10 +36,17 @@ Route::view('/cookies', 'legal.cookies')->name('cookies');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
 Route::view('/cart/reservation', 'cart.reservation')->name('reservation');
 
-
+//Reservas
+Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+Route::post('/reservation/checkout', [ReservationController::class, 'checkout'])->name('reservation.checkout');
+Route::post('/reservation/cancel', [ReservationController::class, 'cancelReservation'])->name('reservation.cancel');
+Route::post('/reservation/confirm', [ReservationController::class, 'confirmReservation'])->name('reservation.confirm');
+Route::post('/reservation/receive', [ReservationController::class, 'receive'])->name('reservation.receive');
+Route::get('/reservation/supervising', [ReservationController::class, 'supervisingView'])->name('reservation.supervising');
+Route::post('/reservation/supervising', [ReservationController::class, 'supervising'])->name('reservation.supervising.post');
 
 // // Usuarios (solo si estás logueado)
 // Route::middleware('auth')->group(function () {

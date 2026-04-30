@@ -4,8 +4,8 @@
 			<i class="fa-solid fa-bars"></i>
 		</button>
 		<div class="logo">
-			<a href="{{ route('home') }}"><img src="assets/img/logo/logo-dark.webp" class="logo-dark"></a>
-			<a href="{{ route('home') }}"><img src="assets/img/logo/logo-light.webp" class="logo-light"></a>
+			<a href="{{ route('home') }}"><img src="/assets/img/logo/logo-dark.webp" class="logo-dark"></a>
+			<a href="{{ route('home') }}"><img src="/assets/img/logo/logo-light.webp" class="logo-light"></a>
 		</div>
 	</header>
 	<nav class="mobile-menu" aria-label="Menú móvil">
@@ -32,14 +32,14 @@
         <ul class="mobile-links">
             <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
             <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
-            <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
+            <li><a href="{{ route('reservation.index') }}"><i class="fa-solid fa-calendar-check"></i> Reservas</a></li>
             <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
         </ul>
 	</nav>
     <ul>
         <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
         <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
-        <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
+        <li><a href="{{ route('reservation.index') }}"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
         <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
 
         @if(session()->has('userId'))

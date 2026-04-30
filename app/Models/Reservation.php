@@ -12,6 +12,12 @@ class Reservation
     private float $price;
     private int $idReservationStatus;
 
+    private ?string $firstName = null;
+    private ?string $lastName = null;
+    private ?string $brand = null;
+    private ?string $model = null;
+    private ?string $reservationStatus = null;
+
     public function __construct(
         int $idReservation = 0,
         int $idUser = 0,
@@ -77,5 +83,56 @@ class Reservation
     }
     public function setIdReservationStatus(int $value): void {
         $this->idReservationStatus = $value;
+    }
+
+    public function getFirstName(): string {
+        return $this->firstName;
+    }
+    public function setFirstName(string $firstName): void {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): string {
+        return $this->lastName;
+    }
+    public function setLastName(string $lastName): void {
+        $this->lastName = $lastName;
+    }
+
+    public function getBrand(): string {
+        return $this->brand;
+    }
+    public function setBrand(string $brand): void {
+        $this->brand = $brand;
+    }
+
+    public function getModel(): string {
+        return $this->model;
+    }
+    public function setModel(string $model): void {
+        $this->model = $model;
+    }
+
+    public function getReservationStatus(): string {
+        return [
+            'pending'   => 'Pendiente',
+            'cancelled' => 'Cancelada',
+            'finished'  => 'Finalizada',
+            'renting'  => 'Alquilada',
+            'supervising'  => 'Supervisando',
+        ][$this->reservationStatus] ?? $this->reservationStatus;
+    }
+    public function setReservationStatus(string $reservationStatus): void {
+        $this->reservationStatus = $reservationStatus;
+    }
+
+    public function getStatusClass(): string {
+        return [
+            'pending'   => 'status-pending',
+            'cancelled' => 'status-cancelled',
+            'finished'  => 'status-finished',
+            'renting'  => 'status-renting',
+            'supervising'  => 'status-supervising',
+        ][$this->reservationStatus] ?? 'status-default';
     }
 }

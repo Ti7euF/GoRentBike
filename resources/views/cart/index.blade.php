@@ -103,7 +103,7 @@
         </section>
 
         <footer class="cart-actions">
-            <form method="POST" action="/cart/checkout">
+            <form method="POST" action="/reservation/checkout">
                 @csrf
                 <button type="submit" class="grb-btn grb-btn-success">
                     <i class="fa-solid fa-credit-card"></i> Finalizar reserva

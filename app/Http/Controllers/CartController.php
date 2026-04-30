@@ -12,12 +12,10 @@ use App\Repositories\ReservationRepository;
 class CartController extends Controller
 {
     protected $repoBike;
-    protected $repoReservation;
 
-    public function __construct(BikeRepository $repoBike, ReservationRepository $repoReservation)
+    public function __construct(BikeRepository $repoBike)
     {
         $this->repoBike = $repoBike;
-        $this->repoReservation = $repoReservation;
     }
 
     public function index() {
@@ -34,7 +32,8 @@ class CartController extends Controller
         foreach ($bikes as $bike) {
             foreach ($cart as $item) {
                 if ((int)$item['bikeId'] === (int)$bike->getIdBike()) {                
-                    $totalPrice = $this->calculateItemPrice($bike, $item['startDate'], $item['endDate']);
+                    //$totalPrice = $this->calculateItemPrice($bike, $item['startDate'], $item['endDate']);
+                    $totalPrice = $bike->calculatePrice($item['startDate'], $item['endDate']);
                     $totalCartPrice += $totalPrice;
                 }
             }
@@ -104,70 +103,4 @@ class CartController extends Controller
             return response()->json(false);
         }
     }
-
-    public function checkout(Request $request) {
-        if(!session()->has('userId')) {
-            return redirect()->route('login');   
-        }
-    
-        $cart = session('cart', []);
-        $totalCartPrice = 0;
-
-        if (empty($cart)) {
-            return redirect()->route('reservation')->with('success', false);
-        }
-
-        try {
-            $cartWithPrices = [];
-
-            foreach ($cart as $item) {
-                if (!$this->repoBike->isBikeAvailable($item['bikeId'], $item['startDate'], $item['endDate'])) {
-                    return redirect()->route('reservation')->with('success', false);
-                }
-                
-                $bike = $this->repoBike->getBikeById($item['bikeId']);
-
-                if (!$bike) {
-                    return redirect()->route('reservation')->with('success', false);
-                }
-
-                $itemPrice = $this->calculateItemPrice($bike, $item['startDate'], $item['endDate']);
-                $cartWithPrices[] = [
-                    'bikeId' => $item['bikeId'],
-                    'startDate' => $item['startDate'],
-                    'endDate' => $item['endDate'],
-                    'price' => $itemPrice
-                ];
-            }
-
-            foreach ($cartWithPrices as $item) {
-                $reservation = new Reservation(0, session('userId'), $item['bikeId'], $item['startDate'], $item['endDate'], $item['price'], 1);
-                $this->repoReservation->createReservation($reservation);
-            }
-
-            session()->forget('cart');
-
-            return redirect()->route('reservation')->with('success', true);
-
-        } catch (\Exception $e) {
-            return redirect()->route('reservation')->with('success', false);
-        }
-    }
-
-    private function calculateItemPrice($bike, $startDate, $endDate) {
-        $bike->setStartDate($startDate);
-        $bike->setEndDate($endDate);
-
-        $days = $bike->calculateRentalDays();
-        $bike->setRentalDays($days);
-
-        $discount = $bike->calculateDiscount($days);
-        $bike->setDiscount($discount);
-
-        $priceWithDiscount = $bike->calculateTotalPrice();
-        $bike->setTotalPrice($priceWithDiscount);
-
-        return $priceWithDiscount;
-    }
-
 }
