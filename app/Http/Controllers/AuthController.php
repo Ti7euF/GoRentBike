@@ -73,14 +73,15 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Ya existe una cuenta registrada con este email.');       
         }
 
-        $user = new User([
-            'idRole' => 4,
-            'firstName' => $request->input('firstName'),
-            'lastName' => $request->input('lastName'),
-            'email' => $request->input('email'),
-            'password' => password_hash($request->input('password'), PASSWORD_DEFAULT),
-            'active' => 1
-        ]);
+        $user = new User(
+            0,
+            4,
+            $request->input('firstName'),
+            $request->input('lastName'),
+            $request->input('email'),
+            password_hash($request->input('password'), PASSWORD_DEFAULT),
+            true
+        );
 
         $created = $this->repo->create($user);
 

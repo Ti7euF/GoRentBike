@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BikeController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
@@ -47,6 +49,30 @@ Route::post('/reservation/confirm', [ReservationController::class, 'confirmReser
 Route::post('/reservation/receive', [ReservationController::class, 'receive'])->name('reservation.receive');
 Route::get('/reservation/supervising', [ReservationController::class, 'supervisingView'])->name('reservation.supervising');
 Route::post('/reservation/supervising', [ReservationController::class, 'supervising'])->name('reservation.supervising.post');
+
+//Usuarios
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/update', [UserController::class, 'userUpdateForm'])->name('user.form');
+Route::post('/user/update', [UserController::class, 'userUpdate'])->name('user.form.post');
+Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
+
+//Bicicletas
+Route::get('/bike', [BikeController::class, 'index'])->name('bike.index');
+Route::get('/bike/add', [BikeController::class, 'bikeAddForm'])->name('bike.addForm');
+Route::post('/bike/add', [BikeController::class, 'bikeAdd'])->name('bike.addForm.post');
+Route::get('/bike/update', [BikeController::class, 'bikeUpdateForm'])->name('bike.updateForm');
+Route::post('/bike/update', [BikeController::class, 'bikeUpdate'])->name('bike.updateForm.post');
+
+//Mantenimiento
+Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
+Route::get('/maintenance/add', [MaintenanceController::class, 'maintenanceForm'])->name('maintenance.form');
+Route::post('/maintenance/add', [MaintenanceController::class, 'maintenance'])->name('maintenance.form.post');
+
+//Facturación
+Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
+
+
+
 
 // // Usuarios (solo si estás logueado)
 // Route::middleware('auth')->group(function () {

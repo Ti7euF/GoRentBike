@@ -18,6 +18,13 @@
         border-color: var(--blue-base);
         color: var(--color-white);
     }
+
+.grb-input option {
+    background: var(--card-bg);
+    color: var(--texto);
+}
+
+
 /*-------------------------------------------------*/
 
 /*Boton*/
@@ -423,7 +430,7 @@ input[type="radio"]:checked + .filter {
     border: 1px solid var(--red-dark);
 }
 
-.status-finished {
+.status-finished, .status-active {
     background: var(--green-light);
     color: var(--gray-900);
     border: 1px solid var(--green-dark);
@@ -435,7 +442,7 @@ input[type="radio"]:checked + .filter {
     border: 1px solid var(--info-dark);
 }
 
-.status-supervising {
+.status-supervising, .status-inactive  {
     background: var(--gray-500);
     color: var(--gray-900);
     border: 1px solid var(--gray-700);
@@ -447,7 +454,7 @@ input[type="radio"]:checked + .filter {
 }
 
 
-.admin-actions {
+.actions {
     display: flex;
     gap: 0.8rem;
 }
@@ -490,6 +497,14 @@ input[type="radio"]:checked + .filter {
 
 .grb-form button, .grb-form a {
     margin-bottom: 1rem;
+}
+
+.validation {
+    display: none;
+    color: var(--red-light);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 @media (min-width: 768px) {

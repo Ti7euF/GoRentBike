@@ -31,22 +31,36 @@
 
         <ul class="mobile-links">
             <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
-            <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
             <li><a href="{{ route('reservation.index') }}"><i class="fa-solid fa-calendar-check"></i> Reservas</a></li>
+            @if (session()->has('userId') && (session('role') == 1 || session('role') == 3))
+                <li><a href="{{ route('billing.index') }}"><i class="fa-solid fa-file-invoice"></i> Facturación</a></li>
+            @endif
+            @if (session()->has('userId') && (session('role') == 1 || session('role') == 2))
+                <li><a href="{{ route('maintenance.index') }}"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a></li>
+            @endif
             <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
         </ul>
 	</nav>
     <ul>
         <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
-        <li><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Accesorios</a></li>
         <li><a href="{{ route('reservation.index') }}"><i class="fa-solid fa-calendar-check"></i> Mis reservas</a></li>
+        @if (session()->has('userId') && (session('role') == 1 || session('role') == 3))
+            <li><a href="{{ route('billing.index') }}"><i class="fa-solid fa-file-invoice"></i> Facturación</a></li>
+        @endif
+        @if (session()->has('userId') && (session('role') == 1 || session('role') == 2))
+            <li><a href="{{ route('maintenance.index') }}"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a></li>
+        @endif
         <li><a href="#" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema</a></li>
 
         @if(session()->has('userId'))
             <li class="user-menu">
                 <i class="fa-solid fa-user"></i> {{ session('name') }}
                 <ul class="dropdown">
-                    <li><a href="#">Perfil</a></li>
+                    @if (session()->has('userId') && session('role') == 1)
+                        <li><a href="{{ route('user.index') }}"> Usuarios</a></li>
+                    @else
+                        <li><a href="{{ route('user.index') }}"> Perfil</a></li>
+                    @endif
                     <li><a href="#" name="logout"> Cerrar sesión</a></li>
                 </ul>
             </li>

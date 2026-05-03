@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function isPasswordValid() {
-        console.log(password.value);
         return passwordRegex.test(password.value);
     }
 

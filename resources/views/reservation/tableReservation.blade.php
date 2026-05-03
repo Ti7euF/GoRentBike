@@ -15,40 +15,41 @@
                     <li><strong>Precio:</strong> {{ number_format($res->getPrice(), 2) }} €</li>
                     <li><span class="status-badge {{ $res->getStatusClass() }}">{{ $res->getReservationStatus() }}</span></li>
                 </ul>
+                <div class="actions">
+                    {{-- Cancelar (admin/facturación) --}}
+                    @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
+                        <form method="POST" action="{{ route('reservation.cancel') }}" onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?')">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                            <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
+                            <button type="submit" class="grb-btn grb-btn-danger">Cancelar</button>
+                        </form>
+                    @endif
 
-                {{-- Cancelar (admin/facturación) --}}
-                @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
-                    <form method="POST" action="{{ route('reservation.cancel') }}" onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?')">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                        <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
-                        <button type="submit" class="grb-btn grb-btn-danger">Cancelar</button>
-                    </form>
-                @endif
+                    {{-- Entregar (admin/facturación) --}}
+                    @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
+                        <form method="POST" action="{{ route('reservation.confirm') }}" onsubmit="return confirm('¿Confirmar esta reserva y entregar bicicleta?')">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                            <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
+                            <button type="submit" class="grb-btn grb-btn-success">Entregar</button>
+                        </form>
+                    @endif
 
-                {{-- Entregar (admin/facturación) --}}
-                @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
-                    <form method="POST" action="{{ route('reservation.confirm') }}" onsubmit="return confirm('¿Confirmar esta reserva y entregar bicicleta?')">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                        <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
-                        <button type="submit" class="grb-btn grb-btn-success">Entregar</button>
-                    </form>
-                @endif
+                    {{-- Recepcionar (admin/facturación) --}}
+                    @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 4)
+                        <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                            <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
+                        </form>
+                    @endif
 
-                {{-- Recepcionar (admin/facturación) --}}
-                @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 4)
-                    <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                        <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
-                    </form>
-                @endif
-
-                {{-- Formulario técnico (estado == 5) --}}
-                @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
-                    <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
-                @endif
+                    {{-- Formulario técnico (estado == 5) --}}
+                    @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
+                        <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
+                    @endif
+                </div>
             </div>
         </article>
         @endforeach
@@ -87,39 +88,41 @@
                     <td>{{ number_format($res->getPrice(), 2) }} €</td>
                     <td><span class="status-badge {{ $res->getStatusClass() }}">{{ $res->getReservationStatus() }}</span></td>
                     <td>
-                        {{-- Cancelar (admin/facturación) --}}
-                        @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
-                            <form method="POST" action="{{ route('reservation.cancel') }}" onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?')">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                                <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
-                                <button type="submit" class="grb-btn grb-btn-danger">Cancelar</button>
-                            </form>
-                        @endif
+                        <div class="actions">
+                            {{-- Cancelar (admin/facturación) --}}
+                            @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
+                                <form method="POST" action="{{ route('reservation.cancel') }}" onsubmit="return confirm('¿Seguro que quieres cancelar esta reserva?')">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                                    <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
+                                    <button type="submit" class="grb-btn grb-btn-danger">Cancelar</button>
+                                </form>
+                            @endif
 
-                        {{-- Entregar (admin/facturación) --}}
-                        @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
-                            <form method="POST" action="{{ route('reservation.confirm') }}" onsubmit="return confirm('¿Confirmar esta reserva y entregar bicicleta?')">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                                <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
-                                <button type="submit" class="grb-btn grb-btn-success">Entregar</button>
-                            </form>
-                        @endif
+                            {{-- Entregar (admin/facturación) --}}
+                            @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 1)
+                                <form method="POST" action="{{ route('reservation.confirm') }}" onsubmit="return confirm('¿Confirmar esta reserva y entregar bicicleta?')">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                                    <input type="hidden" name="startDate" value="{{ $res->getStartDate() }}">
+                                    <button type="submit" class="grb-btn grb-btn-success">Entregar</button>
+                                </form>
+                            @endif
 
-                        {{-- Recepcionar (admin/facturación) --}}
-                        @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 4)
-                            <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                                <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
-                            </form>
-                        @endif
+                            {{-- Recepcionar (admin/facturación) --}}
+                            @if ((session('role') == 1 || session('role') == 3) && $res->getIdReservationStatus() == 4)
+                                <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
+                                    <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
+                                </form>
+                            @endif
 
-                        {{-- Formulario técnico (estado == 5) --}}
-                        @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
-                            <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
-                        @endif
+                            {{-- Formulario técnico (estado == 5) --}}
+                            @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
+                                <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 @endforeach
