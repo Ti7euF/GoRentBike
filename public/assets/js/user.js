@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function loadUsers() {
-        const filter = document.querySelector('input[name="search"]')?.value.trim() ?? "all";
+        const filter = document.querySelector('input[name="search"]')?.value.trim() || "all";
         const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "asc";
         
         const url = `/user?page=${currentPage}&filter=${encodeURIComponent(filter)}&sort=${sort}`;
