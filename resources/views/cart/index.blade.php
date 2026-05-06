@@ -24,7 +24,7 @@
         <section class="grb-cards">
             @foreach ($bikes as $bike)
                 <article class="grb-card">
-                    <img class="grb-card-img" src="/assets/img/{{ $bike->getPath() }}" alt="Imagen de {{ $bike->getBrand() }} {{ $bike->getModel() }}">
+                    <img class="grb-card-img" src="/uploads/bikes/{{ $bike->getPath() }}" alt="Imagen de {{ $bike->getBrand() }} {{ $bike->getModel() }}">
                     <div class="grb-card-info">
                         <h3 class="grb-card-title">{{ $bike->getBrand() }} {{ $bike->getModel() }}</h3>
                         <p class="grb-card-type">{{ $bike->getType() }}</p>
@@ -67,7 +67,7 @@
                     @foreach ($bikes as $bike)
                         <tr class="grb-table-row">
                             <td class="cart-img-cell">
-                                <img class="grb-table-img" src="/assets/img/{{ $bike->getPath() }}" alt="Imagen de {{ $bike->getBrand() }} {{ $bike->getModel() }}">
+                                <img class="grb-table-img" src="/uploads/bikes/{{ $bike->getPath() }}" alt="Imagen de {{ $bike->getBrand() }} {{ $bike->getModel() }}">
                             </td>
                             <td>
                                 <h3 class="bike-name">

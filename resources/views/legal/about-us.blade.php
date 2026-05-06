@@ -11,8 +11,8 @@
   <header class="titulo">
     <h2>Quiénes somos</h2>
     <div class="logo">
-      <img src="assets/img/logo/logo-dark.webp" class="logo-dark" alt="Go Rent Bike Logo">
-      <img src="assets/img/logo/logo-light.webp" class="logo-light" alt="Go Rent Bike Logo">
+      <img src="uploads/logo/logo-dark.webp" class="logo-dark" alt="Go Rent Bike Logo">
+      <img src="uploads/logo/logo-light.webp" class="logo-light" alt="Go Rent Bike Logo">
     </div>
   </header>
 

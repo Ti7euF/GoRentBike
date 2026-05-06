@@ -2,7 +2,7 @@
     <article class="card">
         <div class="slideshow">
             @foreach ($bike->getImages() as $index => $img)
-                <img src="/assets/img/{{ $img['path'] }}"
+                <img src="/uploads/bikes/{{ $img['path'] }}"
                      alt="{{ $img['description'] }}"
                      class="{{ $index === 0 ? 'show' : 'hide' }}">
             @endforeach

@@ -25,6 +25,7 @@ class Bike
     private int $rentalDays = 0;
     private int $discount = 0;
     private ?float $totalPrice = 0;
+    private ?string $bikeStatus = null;
 
     private array $images = [];
 
@@ -195,6 +196,19 @@ class Bike
     }
     public function setImages(array $images): void {
         $this->images = $images;
+    }
+
+    public function getBikeStatus(): string {
+        return [
+            'Available'   => 'Disponible',
+            'In Maintenance' => 'En Mantenimiento',
+            'Broken'  => 'Estropeada',
+            'Unavailable'  => 'No disponible',
+            'Reserved'  => 'Reservada',
+        ][$this->bikeStatus] ?? $this->bikeStatus;
+    }
+    public function setBikeStatus(string $bikeStatus): void {
+        $this->bikeStatus = $bikeStatus;
     }
 
     public function addImage(array $image): void {

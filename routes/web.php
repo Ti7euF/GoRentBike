@@ -58,10 +58,12 @@ Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.d
 
 //Bicicletas
 Route::get('/bike', [BikeController::class, 'index'])->name('bike.index');
-Route::get('/bike/add', [BikeController::class, 'bikeAddForm'])->name('bike.addForm');
-Route::post('/bike/add', [BikeController::class, 'bikeAdd'])->name('bike.addForm.post');
-Route::get('/bike/update', [BikeController::class, 'bikeUpdateForm'])->name('bike.updateForm');
+Route::get('/bike/add', [BikeController::class, 'viewAddBike'])->name('bike.viewAddBike');
+Route::post('/bike/add', [BikeController::class, 'bikeAdd'])->name('bike.add.post');
+Route::get('/bike/update', [BikeController::class, 'viewUpdateBike'])->name('bike.updateForm');
 Route::post('/bike/update', [BikeController::class, 'bikeUpdate'])->name('bike.updateForm.post');
+Route::post('/bike/deleteImage', [BikeController::class, 'deleteImage'])->name('bike.deleteImage.post');
+Route::post('/bike/addImage', [BikeController::class, 'addImage'])->name('bike.addImage.post');
 
 //Mantenimiento
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');

@@ -4,8 +4,8 @@
 @section('content')
     <section class="card-login">
         <header class="card-login-header">
-            <a href="{{ route('home') }}"><img src="assets/img/logo/logo-dark.webp" alt="Go Rent Bike" class="grb-logo logo-dark"></a>
-		    <a href="{{ route('home') }}"><img src="assets/img/logo/logo-light.webp"  alt="Go Rent Bike" class="grb-logo logo-light"></a>
+            <a href="{{ route('home') }}"><img src="uploads/logo/logo-dark.webp" alt="Go Rent Bike" class="grb-logo logo-dark"></a>
+		    <a href="{{ route('home') }}"><img src="uploads/logo/logo-light.webp"  alt="Go Rent Bike" class="grb-logo logo-light"></a>
             <h2>Registrar una cuenta</h2>
         </header>
 

@@ -24,6 +24,10 @@
     color: var(--texto);
 }
 
+grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] {
+    display: block;
+    margin-bottom: 0.6rem;
+}
 
 /*-------------------------------------------------*/
 
@@ -132,6 +136,12 @@
 		justify-self: start;
     }
 
+    .control-bar .actions {
+        grid-column: 2;
+        justify-self: center;
+        order: 0;
+    }
+
     .control-bar .order {
         grid-column: 3;
         justify-self: end;
@@ -233,6 +243,16 @@ input[type="radio"]:checked + .filter {
 .date-filter span {
     opacity: 0.6;
 }
+
+/* -------------------------------------------------- */
+/* Acciones */
+.actions {
+    /* display: flex;
+    align-items: center; */
+    gap: 0.6rem;
+    order: -1;
+}
+
 
 /* -------------------------------------------------- */
 /* Botones ordenación */
@@ -498,6 +518,22 @@ input[type="radio"]:checked + .filter {
 .grb-form button, .grb-form a {
     margin-bottom: 1rem;
 }
+
+.grb-list-images {
+    margin-top: 1rem;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 1.2rem;
+    border-radius: 0.6rem;
+}
+
+.grb-list-images li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem; 
+}  
 
 .validation {
     display: none;

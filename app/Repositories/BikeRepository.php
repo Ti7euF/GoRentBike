@@ -9,8 +9,7 @@ class BikeRepository
 {
     protected $db;
 
-    public function __construct(Database $db)
-    {
+    public function __construct(Database $db) {
         $this->db = $db;
     }
 
@@ -175,7 +174,9 @@ class BikeRepository
         $sql = "SELECT b.idBike, idStatusBike, brand, model, type, dailyPrice, active, frame, gear, brakes, suspension, tires, seatpost, path
                 FROM bike b
                 LEFT JOIN bike_image bi ON bi.idBike = b.idBike
-                WHERE b.idBike IN ($idsBike) AND bi.main = 1";
+                WHERE b.idBike IN ($idsBike)
+                GROUP BY b.idBike";
+                //WHERE b.idBike IN ($idsBike) AND bi.main = 1";
 
         $result = $this->db->query($sql, $ids);
 
@@ -214,7 +215,9 @@ class BikeRepository
         $sql = "SELECT b.idBike, idStatusBike, brand, model, type, dailyPrice, totalKm, active, frame, gear, brakes, suspension, tires, seatpost, path
                 FROM bike b
                 LEFT JOIN bike_image bi ON bi.idBike = b.idBike
-                WHERE b.idBike = ? AND bi.main = 1";
+                WHERE b.idBike = ?
+                GROUP BY b.idBike";
+                //WHERE b.idBike = ? AND bi.main = 1";
 
         $result = $this->db->query($sql, [$id]);
 
@@ -246,6 +249,7 @@ class BikeRepository
         return $bike;
     }
 
+    
     public function getKmBikeById(int $idBike): ?int {
         $sql = "SELECT totalKm FROM bike WHERE idBike = :idBike";
         $params = ['idBike' => $idBike];
@@ -264,5 +268,144 @@ class BikeRepository
         $params = ['km' => $km, 'idBike' => $idBike];
 
         return $this->db->execute($sql, $params);
+    }
+
+
+    public function getBikesAmortization(int $offset, int $limit, string $filter, string $sort): array {
+        $limit = (int)$limit;
+        $offset = (int)$offset;
+        $params = [];
+
+        $sql = "SELECT b.idBike, b.idStatusBike, b.brand, b.model, b.type, (b.amortizationPrice + IFNULL(SUM(m.cost), 0) - IFNULL(SUM(rs.price), 0) - IFNULL(SUM(r.penalty), 0)) AS amortizationPrice, b.totalKm, b.active, bs.nameStatus
+                FROM bike b
+                LEFT JOIN bike_status bs ON bs.idStatus = b.idStatusBike
+                LEFT JOIN reservation rs ON rs.idBike = b.idBike AND rs.idReservationStatus = 3
+                LEFT JOIN rental r ON r.idReservation = rs.idReservation
+                LEFT JOIN maintenance m ON m.idBike = b.idBike
+                WHERE 1 = 1";
+                
+        if ($filter != 'all') {
+            $sql .= " AND (b.brand LIKE :filter OR b.model LIKE :filter)";
+            $params['filter'] = "%$filter%";
+        }
+
+        $sql .= " GROUP BY b.idBike, b.brand, b.model, b.type, b.totalKm, b.amortizationPrice";
+
+        if ($sort === 'asc') {
+            $sql .= " ORDER BY b.idBike ASC";
+        } else {
+            $sql .= " ORDER BY b.idBike DESC";
+        }
+
+        $sql .= " LIMIT $limit OFFSET $offset";
+
+        $result = $this->db->query($sql, $params);
+
+        if (empty($result)) {
+            return [];
+        }
+
+        $bikes = [];
+
+        foreach ($result as $row) {
+            $bike = new Bike(
+                $row['idBike'],
+                $row['idStatusBike'],
+                $row['brand'],
+                $row['model'],
+                $row['type'],
+                (bool)$row['active']
+            );
+
+            $bike->setAmortizationPrice($row['amortizationPrice'] ?? null);
+            $bike->setTotalKm($row['totalKm']);
+            $bike->setBikeStatus($row['nameStatus']);
+
+            $bikes[$row['idBike']] = $bike;
+        }
+
+        return $bikes;
+    }
+
+    public function countAmortizationBikes(string $filter) {
+        $params = [];
+        
+        $sql = "SELECT COUNT(idBike) AS total
+                FROM bike
+                WHERE 1 = 1";
+                
+        if ($filter != 'all') {
+            $sql .= " AND (brand LIKE :filter OR model LIKE :filter)";
+            $params['filter'] = "%$filter%";
+        }
+
+        $result = $this->db->query($sql, $params);
+
+        if (empty($result)) {
+            return 0;
+        }
+
+        return (int) $result[0]['total'];
+    }
+
+
+    public function updateBike(Bike $bike) {
+        $sql = "UPDATE bike 
+                SET idStatusBike = :idStatusBike, brand = :brand, model = :model, type = :type, dailyPrice = :dailyPrice, active = :active, 
+                    frame = :frame, gear = :gear, brakes = :brakes, suspension = :suspension, tires = :tires, seatpost = :seatpost
+                WHERE idBike = :idBike";
+
+        $params = ['idBike' => $bike->getIdBike(), 'idStatusBike' => $bike->getIdStatusBike(), 'brand' => $bike->getBrand(), 'model' => $bike->getModel(), 'type' => $bike->getType(), 
+                    'dailyPrice' => $bike->getDailyPrice(), 'active' => $bike->isActive() ? 1 : 0, 'frame' => $bike->getFrame(), 'gear' => $bike->getGear(), 'brakes' => $bike->getBrakes(), 
+                    'suspension' => $bike->getSuspension(),'tires' => $bike->getTires(), 'seatpost' => $bike->getSeatpost()
+        ];
+
+        $result = $this->db->execute($sql, $params);
+
+        return $result;
+    }
+
+    public function addImageToBike(int $idBike, string $path, string $description): bool {
+        $sql = "INSERT INTO bike_image (idBike, path, description, main)
+                VALUES (:idBike, :path, :description, 1)";
+
+        $params = [
+            'idBike' => $idBike,
+            'path' => $path,
+            'description' => $description
+        ];
+
+        $result = $this->db->execute($sql, $params);
+
+        return $result;
+    }
+
+    public function deleteImageToBike(int $idBike, string $path): bool {
+        $sql = "DELETE FROM bike_image
+                WHERE idBike = :idBike AND path = :path";
+
+        $params = [
+            'idBike' => $idBike,
+            'path' => $path
+        ];
+
+        $result = $this->db->execute($sql, $params);
+
+        return $result;
+    }
+
+
+    public function addBike(Bike $bike) {
+        $sql = "INSERT INTO bike (idStatusBike, brand, model, type, amortizationPrice, dailyPrice, totalKm, active, frame, gear, brakes, suspension, tires, seatpost)
+                VALUES (:idStatusBike, :brand, :model, :type, :amortizationPrice, :dailyPrice, :totalKm, :active, :frame, :gear, :brakes, :suspension, :tires, :seatpost)";
+
+        $params = ['idStatusBike' => $bike->getIdStatusBike(), 'brand' => $bike->getBrand(), 'model' => $bike->getModel(), 'type' => $bike->getType(), 'amortizationPrice' => $bike->getAmortizationPrice(), 
+                    'dailyPrice' => $bike->getDailyPrice(), 'totalKm' => $bike->getTotalKm(), 'active' => $bike->isActive() ? 1 : 0, 'frame' => $bike->getFrame(), 'gear' => $bike->getGear(), 
+                    'brakes' => $bike->getBrakes(), 'suspension' => $bike->getSuspension(),'tires' => $bike->getTires(), 'seatpost' => $bike->getSeatpost()
+        ];
+
+        $result = $this->db->execute($sql, $params);
+
+        return $result;
     }
 }
