@@ -16,7 +16,7 @@
     @elseif(session('error'))
         <p class="error">{{ session('error') }}</p>
     @endif
-    <form action="{{ route('bike.updateForm.post') }}" method="POST" class="grb-form">
+    <form action="{{ route('bike.update.post') }}" method="POST" class="grb-form">
         @csrf
         <fieldset>
             <legend>Ficha de bicicleta</legend>
@@ -74,8 +74,9 @@
         <p id="errorSeatpost" class="validation">Máximo 50 caracteres (sillín).</p>
 
     </form>
-    @if (!empty($bike->getImages()))
-        <div class="grb-list-images">
+
+    <div class="grb-list-images">
+        @if (!empty($bike->getImages()))
             <h3>Imágenes asociadas a la bicicleta</h3>
             <ul>
                 @foreach ($bike->getImages() as $img)
@@ -90,7 +91,7 @@
                     </li>
                 @endforeach
             </ul>
-
+        @endif
             <div>
                 <form action="{{ route('bike.addImage.post') }}" method="POST" enctype="multipart/form-data" id="formAddImage">
                     @csrf
@@ -101,7 +102,6 @@
                 </form>
             </div>
         </div>
-    @endif
 </section>
 
 <script src="/assets/js/bikeForm.js"></script>

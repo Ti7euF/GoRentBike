@@ -53,7 +53,7 @@ class UserController extends Controller
         return view('user.index', ['page' => $page, 'limit' => $limit, 'users' => $users, 'totalPages' => $totalPages, 'currentPage' => $currentPage]);
     }
 
-    public function userUpdateForm(Request $request) {
+    public function viewUpdateUser(Request $request) {
         if(!session()->has('userId')) {
             return redirect()->route('login');
         }
@@ -70,7 +70,7 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('error', 'Usuario no encontrado.');
         }
 
-        return view('user.formUser', ['user' => $user]);
+        return view('user.viewUpdate', ['user' => $user]);
     }
 
     public function userUpdate(Request $request) {

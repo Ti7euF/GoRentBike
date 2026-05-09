@@ -49,7 +49,6 @@ class BikeController extends Controller
 
         return view('bike.index', ['page' => $page, 'limit' => $limit, 'bikes' => $bikes, 'totalPages' => $totalPages, 'currentPage' => $currentPage]);
     }
-
     
     public function viewUpdateBike(Request $request) {
         if (session('role') != 1) {
@@ -65,9 +64,8 @@ class BikeController extends Controller
             return redirect()->route('bike.index')->with('error', 'Bicicleta no encontrada.');
         }
 
-        return view('bike.updateForm', ['bike' => $bike]);
+        return view('bike.viewUpdate', ['bike' => $bike]);
     }
-
     public function bikeUpdate(Request $request) {
         if (session('role') != 1) {
             return redirect()->route('bike.index')->with('error', 'No tienes permisos para realizar esta acción.');
@@ -126,7 +124,6 @@ class BikeController extends Controller
 
         return back()->with('success', 'Imagen eliminada correctamente.');
     }
-
     public function addImage(Request $request) {
         $idBike = $request->input('idBike');
         $images = $request->file('images');
@@ -158,7 +155,6 @@ class BikeController extends Controller
         return back()->with('success', 'Imágenes añadidas correctamente.');
     }
 
-
     public function viewAddBike() {
         if (session('role') != 1) {
             return redirect()->route('login');
@@ -166,7 +162,6 @@ class BikeController extends Controller
 
         return view('bike.viewAdd');
     }
-
     public function bikeAdd(Request $request) {
         if (session('role') != 1) {
             return redirect()->route('bike.index')->with('error', 'No tienes permisos para realizar esta acción.');
@@ -213,7 +208,4 @@ class BikeController extends Controller
 
         return redirect()->route('bike.index')->with('success', 'Bicicleta creada correctamente.');
     }
-
-
-
 }

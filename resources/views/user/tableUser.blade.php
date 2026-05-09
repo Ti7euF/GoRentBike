@@ -14,7 +14,7 @@
                     </ul>
                     <div class="actions">
                         @if (session('role') == 1 || session('userId') == $user->getIdUser())
-                            <a href="{{ route('user.form', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                         @endif
 
                         @if (session('role') == 1)
@@ -66,7 +66,7 @@
                     <td>
                         <div class="actions">
                             @if (session('role') == 1 || session('userId') == $user->getIdUser())
-                                <a href="{{ route('user.form', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                             @endif
 
                             @if (session('role') == 1)

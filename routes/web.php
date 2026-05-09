@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
+use App\Http\Controllers\MaintenanceController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
@@ -52,23 +53,25 @@ Route::post('/reservation/supervising', [ReservationController::class, 'supervis
 
 //Usuarios
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::get('/user/update', [UserController::class, 'userUpdateForm'])->name('user.form');
-Route::post('/user/update', [UserController::class, 'userUpdate'])->name('user.form.post');
+Route::get('/user/update', [UserController::class, 'viewUpdateUser'])->name('user.viewUpdateUser');
+Route::post('/user/update', [UserController::class, 'userUpdate'])->name('user.update.post');
 Route::post('/user/delete', [UserController::class, 'userDelete'])->name('user.delete');
 
 //Bicicletas
 Route::get('/bike', [BikeController::class, 'index'])->name('bike.index');
 Route::get('/bike/add', [BikeController::class, 'viewAddBike'])->name('bike.viewAddBike');
 Route::post('/bike/add', [BikeController::class, 'bikeAdd'])->name('bike.add.post');
-Route::get('/bike/update', [BikeController::class, 'viewUpdateBike'])->name('bike.updateForm');
-Route::post('/bike/update', [BikeController::class, 'bikeUpdate'])->name('bike.updateForm.post');
+Route::get('/bike/update', [BikeController::class, 'viewUpdateBike'])->name('bike.viewUpdateBike');
+Route::post('/bike/update', [BikeController::class, 'bikeUpdate'])->name('bike.update.post');
 Route::post('/bike/deleteImage', [BikeController::class, 'deleteImage'])->name('bike.deleteImage.post');
 Route::post('/bike/addImage', [BikeController::class, 'addImage'])->name('bike.addImage.post');
 
 //Mantenimiento
 Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
-Route::get('/maintenance/add', [MaintenanceController::class, 'maintenanceForm'])->name('maintenance.form');
-Route::post('/maintenance/add', [MaintenanceController::class, 'maintenance'])->name('maintenance.form.post');
+Route::get('/maintenance/add', [MaintenanceController::class, 'viewAddMaintenance'])->name('maintenance.viewAddMaintenance');
+Route::post('/maintenance/add', [MaintenanceController::class, 'maintenanceAdd'])->name('maintenance.add.post');
+Route::get('/maintenance/update', [MaintenanceController::class, 'viewUpdateMaintenance'])->name('maintenance.viewUpdateMaintenance');
+Route::post('/maintenance/update', [MaintenanceController::class, 'maintenanceUpdate'])->name('maintenance.update.post');
 
 //Facturación
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');

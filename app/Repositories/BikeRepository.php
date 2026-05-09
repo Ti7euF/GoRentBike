@@ -13,9 +13,9 @@ class BikeRepository
         $this->db = $db;
     }
 
-    public function getAvailableBikes(int $offset, int $limit, string $filter, string $sort, ?string $startDate = null, ?string $endDate = null): array {
-        $limit = (int)$limit;
-        $offset = (int)$offset;
+    public function getAvailableBikes(?int $offset, ?int $limit, string $filter, string $sort, ?string $startDate = null, ?string $endDate = null): array {
+        // $limit = (int)$limit;
+        // $offset = (int)$offset;
         $params = [];
 
         $sql = "SELECT idBike, idStatusBike, brand, model, type, dailyPrice, active, frame, gear, brakes, suspension, tires, seatpost
@@ -49,7 +49,12 @@ class BikeRepository
             $sql .= " ORDER BY dailyPrice DESC";
         }
 
-        $sql .= " LIMIT $limit OFFSET $offset";
+        //$sql .= " LIMIT $limit OFFSET $offset";
+        if (!empty($limit) && !empty($offset)) {
+            $limit = (int)$limit;
+            $offset = (int)$offset;
+            $sql .= " LIMIT $limit OFFSET $offset";
+        }
 
         $result = $this->db->query($sql, $params);
 
@@ -146,18 +151,24 @@ class BikeRepository
         return $images;
     }
 
-    public function isBikeAvailable(int $bikeId, string $startDate, string $endDate): bool {
+    public function isBikeAvailable(int $bikeId, ?string $startDate, ?string $endDate): bool {
         $sql = "SELECT 1
                 FROM reservation
-                WHERE idBike = :bikeId AND idReservationStatus = :status AND startDate <= :endDate AND endDate >= :startDate
-                LIMIT 1";
+                WHERE idBike = :bikeId AND idReservationStatus = :status";
 
         $params = [
             'bikeId' => $bikeId,
-            'status' => 1,
-            'startDate' => $startDate,
-            'endDate' => $endDate,
+            'status' => 1
         ];
+
+        if ($startDate !== null && $endDate !== null) {
+            $sql .= " AND startDate <= :endDate AND endDate >= :startDate";
+
+            $params['startDate'] = $startDate;
+            $params['endDate'] = $endDate;
+        }
+
+        $sql .= " LIMIT 1";
 
         $result = $this->db->query($sql, $params);
 
@@ -402,6 +413,21 @@ class BikeRepository
         $params = ['idStatusBike' => $bike->getIdStatusBike(), 'brand' => $bike->getBrand(), 'model' => $bike->getModel(), 'type' => $bike->getType(), 'amortizationPrice' => $bike->getAmortizationPrice(), 
                     'dailyPrice' => $bike->getDailyPrice(), 'totalKm' => $bike->getTotalKm(), 'active' => $bike->isActive() ? 1 : 0, 'frame' => $bike->getFrame(), 'gear' => $bike->getGear(), 
                     'brakes' => $bike->getBrakes(), 'suspension' => $bike->getSuspension(),'tires' => $bike->getTires(), 'seatpost' => $bike->getSeatpost()
+        ];
+
+        $result = $this->db->execute($sql, $params);
+
+        return $result;
+    }
+
+    public function updateBikeStatus(int $idBike, int $idStatusBike): bool {
+        $sql = "UPDATE bike
+                SET idStatusBike = :idStatusBike
+                WHERE idBike = :idBike";
+
+        $params = [
+            'idBike' => $idBike,
+            'idStatusBike' => $idStatusBike
         ];
 
         $result = $this->db->execute($sql, $params);

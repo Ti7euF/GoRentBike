@@ -543,6 +543,10 @@ input[type="radio"]:checked + .filter {
     text-align: center;
 }
 
+.no-results {
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .grb-form {
         grid-template-columns: 1fr 1fr;

@@ -14,7 +14,7 @@
     @if(session('error'))
         <p class="error">{{ session('error') }}</p>
     @endif
-    <form action="{{ route('user.form.post') }}" method="POST" class="grb-form">
+    <form action="{{ route('user.update.post') }}" method="POST" class="grb-form">
         @csrf
         <fieldset>
             <legend>Ficha de usuario</legend>

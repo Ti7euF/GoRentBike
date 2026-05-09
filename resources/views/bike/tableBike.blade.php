@@ -35,7 +35,7 @@
         </div>
 
         <div class="add-cart">
-            <a href="{{ route('bike.updateForm', ['idBike' => $bike->getIdBike()]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{{ route('bike.viewUpdateBike', ['idBike' => $bike->getIdBike()]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
         </div>
     </article>
 @endforeach
