@@ -58,7 +58,7 @@ class MaintenanceController extends Controller
 
         $currentDateTime = date('Y-m-d\TH:i');
 
-        return view('maintenance.viewAdd', ['maintenances' => $maintenances, 'currentDateTime' => $currentDateTime]);
+        return view('maintenance.viewAdd', ['bikes' => $bikes, 'currentDateTime' => $currentDateTime]);
     }
     public function maintenanceAdd(Request $request) {
         if (session('role') != 1 && session('role') != 2) {

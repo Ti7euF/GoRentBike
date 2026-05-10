@@ -26,7 +26,7 @@ class ReservationController extends Controller
     public function index(Request $request) {
         $limit = 8;
         $page = (int) $request->input('page', 1);    
-        $sort = $request->input('sort', 'asc');
+        $sort = $request->input('sort', 'desc');
         $filter = $request->input('filter', 'all');
         $offset = ($page - 1) * $limit;
         
@@ -116,6 +116,8 @@ class ReservationController extends Controller
         $idReservationStatus = 2; //cancelar
 
         $cancel = $this->repoReservation->updateReservationStatus($idReservation, $idReservationStatus);
+
+        return back()->with('success', 'Reserva cancelada con éxito.');
     }
 
     public function confirmReservation(Request $request) {

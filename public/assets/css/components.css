@@ -573,3 +573,90 @@ input[type="radio"]:checked + .filter {
         margin: auto;
     }
 }
+
+/* -------------------------------------------------- */
+/* Cards facturación */
+.grb-billing-cards {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.grb-billing-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 1rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.grb-billing-card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--card-border-hover);
+}
+
+.grb-billing-icon {
+    font-size: 2rem;
+    color: var(--blue-light);
+    min-width: 40px;
+}
+
+.grb-billing-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    color: var(--blue-light);
+}
+
+.grb-billing-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.grb-billing-card-incomes .grb-billing-icon {
+    color: var(--green-light);
+}
+
+.grb-billing-card-expenses .grb-billing-icon {
+    color: var(--red-light);
+}
+
+.grb-billing-card-iva .grb-billing-icon {
+    color: var(--yellow-light);
+}
+
+.grb-billing-card-benefit .grb-billing-icon {
+    color: var(--blue-light);
+}
+
+/* -------------------------------------------------- */
+/* Tablet y escritorio */
+@media (min-width: 768px) {
+    .grb-billing-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grb-billing-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.4rem;
+    }
+
+    .grb-billing-icon {
+        font-size: 2.4rem;
+    }
+
+    .grb-billing-value {
+        font-size: 1.4rem;
+    }
+}
+
+/* -------------------------------------------------- */
+/* Gráficas */
+.billing-chart {
+    margin-bottom: 1rem;
+}
