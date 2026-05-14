@@ -1,3 +1,7 @@
+/**
+ * Script de barra de navegación
+ *
+ */
 //Menu hamburguesa en móvil
 const toggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');

@@ -1,3 +1,6 @@
+/**
+ * Script de validación del formulario de bicicletas
+ */
 const btnAddImage = document.getElementById('btnAddImage');
 const inputAddImage = document.getElementById('inputAddImage');
 
@@ -30,13 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitBtn.disabled = true;
 
+    const textRegex = /^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ\s\-\/]{1,50}$/;
+
     function updateSubmitButton() {
         submitBtn.disabled = !isFormValid();
     }
 
     function isTextValid(input) {
-        const value = input.value.trim();
-        return value !== "" && value.length <= 50;
+        return textRegex.test(input.value.trim());
     }
 
     function isDailyPriceValid() {
@@ -60,39 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     seatpost.addEventListener('input', updateSubmitButton);
 
     //Eventos blur
-    brand.addEventListener('blur', () => {
-        errorBrand.style.display = isTextValid(brand) ? 'none' : 'block';
-    });
-
-    model.addEventListener('blur', () => {
-        errorModel.style.display = isTextValid(model) ? 'none' : 'block';
-    });
-
-    dailyPrice.addEventListener('blur', () => {
-        errorDailyPrice.style.display = isDailyPriceValid() ? 'none' : 'block';
-    });
-
-    frame.addEventListener('blur', () => {
-        errorFrame.style.display = isTextValid(frame) ? 'none' : 'block';
-    });
-
-    gear.addEventListener('blur', () => {
-        errorGear.style.display = isTextValid(gear) ? 'none' : 'block';
-    });
-
-    brakes.addEventListener('blur', () => {
-        errorBrakes.style.display = isTextValid(brakes) ? 'none' : 'block';
-    });
-
-    suspension.addEventListener('blur', () => {
-        errorSuspension.style.display = isTextValid(suspension) ? 'none' : 'block';
-    });
-
-    tires.addEventListener('blur', () => {
-        errorTires.style.display = isTextValid(tires) ? 'none' : 'block';
-    });
-
-    seatpost.addEventListener('blur', () => {
-        errorSeatpost.style.display = isTextValid(seatpost) ? 'none' : 'block';
-    });
+    brand.addEventListener('blur', () => { errorBrand.style.display = isTextValid(brand) ? 'none' : 'block'; });
+    model.addEventListener('blur', () => { errorModel.style.display = isTextValid(model) ? 'none' : 'block'; });
+    dailyPrice.addEventListener('blur', () => { errorDailyPrice.style.display = isDailyPriceValid() ? 'none' : 'block'; });
+    frame.addEventListener('blur', () => { errorFrame.style.display = isTextValid(frame) ? 'none' : 'block'; });
+    gear.addEventListener('blur', () => { errorGear.style.display = isTextValid(gear) ? 'none' : 'block'; });
+    brakes.addEventListener('blur', () => { errorBrakes.style.display = isTextValid(brakes) ? 'none' : 'block'; });
+    suspension.addEventListener('blur', () => { errorSuspension.style.display = isTextValid(suspension) ? 'none' : 'block'; });
+    tires.addEventListener('blur', () => { errorTires.style.display = isTextValid(tires) ? 'none' : 'block'; });
+    seatpost.addEventListener('blur', () => { errorSeatpost.style.display = isTextValid(seatpost) ? 'none' : 'block'; });
 });

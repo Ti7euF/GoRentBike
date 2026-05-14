@@ -1,3 +1,6 @@
+/**
+ * Script de validación del formulario de usuarios
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const firstName = document.getElementById('firstName');
     const lastName = document.getElementById('lastName');

@@ -149,77 +149,13 @@ grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] 
 }
 
 /* -------------------------------------------------- */
-/* Botones radio */
+/* Grupo de filtros */
 .group-filters {
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
 	gap: 1rem;
     margin-top: 0.7rem;
-}
-
-.group-filters input[type="radio"] {
-	display: none;
-}
-
-.filter {
-	position: relative;
-	top: 0;
-
-	padding: 0.7rem 1.2rem;
-	margin-bottom: 1rem;
-
-	cursor: pointer;
-	user-select: none;
-
-	font-weight: 700;
-
-	color: var(--texto);
-	text-shadow: 1px 1px 0 rgba(255,255,255,.35), -1px -1px 0 rgba(0,0,0,.35);
-
-	background-image: var(--blue-grad);
-	border: 2px solid var(--primario);
-	border-radius: 8px / 50%;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,55%),
-		0px 2px 0px hsl(220,85%,52%),
-		0px 3px 0px hsl(220,85%,50%),
-		0px 4px 0px hsl(220,85%,48%),
-		0px 5px 0px hsl(220,85%,46%),
-		0px 6px 0px hsl(220,85%,44%),
-		0px 7px 0px hsl(220,85%,42%),
-		0px 8px 0px hsl(220,85%,40%),
-		0px 9px 0px hsl(220,85%,38%),
-		0px 10px 0px hsl(220,85%,30%),
-		0px 11px 10px rgba(0,0,0,.45),
-		inset 0px -5px 6px rgba(120,160,255,.35);
-
-	transition: top 0.12s ease, box-shadow 0.12s ease;
-}
-
-.filter:hover {
-	top: 4px;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,52%),
-		0px 2px 0px hsl(220,85%,48%),
-		0px 3px 0px hsl(220,85%,45%),
-		0px 4px 0px hsl(220,85%,42%),
-		0px 5px 0px hsl(220,85%,38%),
-		0px 6px 0px hsl(220,85%,30%),
-		0px 7px 10px rgba(0,0,0,.45),
-		inset 0px -5px 6px rgba(120,160,255,.35);
-}
-
-input[type="radio"]:checked + .filter {
-	top: 0.5rem;
-
-	box-shadow:
-		0px 1px 0px hsl(220,85%,40%),
-		0px 2px 0px hsl(220,85%,32%),
-		0px 3px 10px rgba(0,0,0,.45),
-		inset 0px -4px 5px rgba(120,160,255,.3);
 }
 
 /* -------------------------------------------------- */

@@ -17,19 +17,23 @@
         <p class="error">{{ session('error') }}</p>
     @endif
     <div class="control-bar">
-        <fieldset class="group-filters">
-            <input type="radio" name="reservation-status" id="all" checked>
-            <label for="all" class="filter">Todas</label>
+        <div class="group-filters">
+            <select id="reservationStatus" class="grb-input">
+                <option value="all">Todas</option>
+                <option value="pending">Pendientes</option>
+                <option value="cancelled">Canceladas</option>
+                <option value="finished">Finalizadas</option>
+            </select>
+        </div>
 
-            <input type="radio" name="reservation-status" id="pending">
-            <label for="pending" class="filter">Pendientes</label>
-
-            <input type="radio" name="reservation-status" id="cancelled">
-            <label for="cancelled" class="filter">Canceladas</label>
-
-            <input type="radio" name="reservation-status" id="finished">
-            <label for="finished" class="filter">Finalizadas</label>
-        </fieldset>
+        <div class="actions">
+            <form action="{{ route('export.pdf') }}" method="POST" data-export-pdf="true">
+            @csrf
+                <input type="hidden" name="html">
+                <input type="hidden" name="title">
+                <button type="submit" class="order-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
+            </form>
+        </div>
 
         <div class="order">
             <span class="order-label">Ordenar por fecha de inicio:</span>
@@ -55,4 +59,5 @@
 </section>
 
 <script src="/assets/js/reservation.js"></script>
+<script src="/assets/js/pdf.js"></script>
 @endsection

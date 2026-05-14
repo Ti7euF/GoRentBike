@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\PdfController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
@@ -77,6 +78,8 @@ Route::post('/maintenance/update', [MaintenanceController::class, 'maintenanceUp
 //Facturación
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
 
+//Exportar Pdf
+Route::post('/export/pdf', [PdfController::class, 'export'])->name('export.pdf');
 
 
 

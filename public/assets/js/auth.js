@@ -1,3 +1,6 @@
+/**
+ * Script de validación de autenticación
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     const firstName = form.firstName;
@@ -24,42 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function isFormValid() {
-        return isFirstNameValid() &&
-               isLastNameValid() &&
-               isEmailValid() &&
-               isPasswordValid() &&
-               isConfirmPasswordValid();
+        return isFirstNameValid() && isLastNameValid() && isEmailValid() && isPasswordValid() && isConfirmPasswordValid();
     }
 
     // Validaciones
     function isFirstNameValid() {
         return nameRegex.test(firstName.value.trim());
     }
-
     function isLastNameValid() {
         return nameRegex.test(lastName.value.trim());
     }
-
     function isEmailValid() {
         return emailRegex.test(email.value.trim());
     }
-
     function isPasswordValid() {
         return passwordRegex.test(password.value);
     }
-
     function isConfirmPasswordValid() {
         return password.value === confirmPassword.value;
     }
 
-    //Eventos input
+    //Eventos input para activar/desactivar el botón
     firstName.addEventListener('input', updateSubmitButton);
     lastName.addEventListener('input', updateSubmitButton);
     email.addEventListener('input', updateSubmitButton);
     password.addEventListener('input', updateSubmitButton);
     confirmPassword.addEventListener('input', updateSubmitButton);
 
-    // Eventos blur
+    // Eventos blur para mostrar/ocultar el mensaje de error
     firstName.addEventListener('blur', function() {
         errorFirstName.style.display = isFirstNameValid() ? 'none' : 'block';
     });

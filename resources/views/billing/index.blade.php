@@ -27,6 +27,15 @@
             </select>
         </div>
 
+        <div class="actions">
+            <form action="{{ route('export.pdf') }}" method="POST" data-export-pdf="true">
+            @csrf
+                <input type="hidden" name="html">
+                <input type="hidden" name="title">
+                <button type="submit" class="order-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
+            </form>
+        </div>
+
         <div class="order">
             <span class="order-label">Ordenar por fecha:</span>
 
@@ -38,6 +47,7 @@
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
             </button>
         </div>
+
     </div>
 
     <div id="group-billing">
@@ -48,5 +58,6 @@
 <script id="initialChartData" type="application/json">{!! json_encode($chartData) !!}</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/assets/js/billing.js"></script>
+<script src="/assets/js/pdf.js"></script>
 
 @endsection

@@ -32,7 +32,6 @@ class CartController extends Controller
         foreach ($bikes as $bike) {
             foreach ($cart as $item) {
                 if ((int)$item['bikeId'] === (int)$bike->getIdBike()) {                
-                    //$totalPrice = $this->calculateItemPrice($bike, $item['startDate'], $item['endDate']);
                     $totalPrice = $bike->calculatePrice($item['startDate'], $item['endDate']);
                     $totalCartPrice += $totalPrice;
                 }

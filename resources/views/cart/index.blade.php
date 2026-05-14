@@ -39,7 +39,7 @@
                         </ul>
 
                         <form method="POST" onsubmit="removeFromCart({{ $bike->getIdBike() }})">
-                            <button type="submit" class="remove-btn">
+                            <button type="submit" class="grb-btn grb-btn-danger">
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </button>
                         </form>
@@ -102,15 +102,24 @@
             </table>
         </section>
 
-        <footer class="cart-actions">
-            <form method="POST" action="/reservation/checkout">
-                @csrf
-                <button type="submit" class="grb-btn grb-btn-success">
-                    <i class="fa-solid fa-credit-card"></i> Finalizar reserva
-                <button>
-            </form>
-        </footer>
+        <section class="cart-wrapper">
+            <div class="card-summary">
+                <h3 class="grb-billing-title">Resumen del carrito</h3>
 
+                <ul class="summary-list">
+                    <li><strong>Subtotal:</strong> {{ number_format($subtotal, 2) }} €</li>
+                    <li><strong>IVA (21%):</strong> {{ number_format($iva, 2) }} €</li>
+                    <li><strong>Total:</strong> {{ number_format($total, 2) }} €</li>
+                </ul>
+
+                <form method="POST" action="/reservation/checkout">
+                    @csrf
+                    <button type="submit" class="grb-btn grb-btn-success grb-btn-block">
+                        <i class="fa-solid fa-credit-card"></i> Finalizar reserva
+                    </button>
+                </form>
+            </div>
+        </section>
     @endif
 </section>
 

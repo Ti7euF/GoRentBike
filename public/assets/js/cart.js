@@ -1,9 +1,38 @@
+/**
+ * Añade una bicicleta al carrito.
+ * - Obtiene las fechas de los inputs.
+ * - Valida las fechas (existen, formato, fechas reales, no reservas en el pasado)
+ * - Envía los datos al backend mediante AJAX.
+ */
 function addToCart(bikeId) {
-    const startDate = document.getElementById('startDate').value;
-    const endDate = document.getElementById('endDate').value;
+    const startDateInput = document.getElementById('startDate').value;
+    const endDateInput = document.getElementById('endDate').value;
 
-    if (!startDate || !endDate) {
+    if (!startDateInput || !endDateInput) {
         alert("Error. Antes de añadir seleccione fecha de inicio y fin válidas.");
+        return;
+    }
+
+    const startDate = new Date(startDateInput + "T00:00:00");
+    const endDate = new Date(endDateInput + "T00:00:00");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Validar fechas reales
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        alert("Formato de fecha no válido.");
+        return;
+    }
+
+    // Fecha de inicio debe ser mayor o igual que hoy
+    if (startDate < today) {
+        alert("La fecha de inicio no puede ser anterior a hoy.");
+        return;
+    }
+
+    // Fecha de fin debe ser mayor que la de inicio
+    if (endDate <= startDate) {
+        alert("La fecha de fin debe ser mayor que la fecha de inicio.");
         return;
     }
 
@@ -12,8 +41,8 @@ function addToCart(bikeId) {
         method: 'POST',
         data: {
             bikeId: bikeId,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: startDateInput,
+            endDate: endDateInput,
             _token: $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
@@ -41,6 +70,11 @@ function addToCart(bikeId) {
     });
 }
 
+/**
+ * Elimina una bicicleta del carrito.
+ * - Envía una petición al backend con el ID de la bicicleta a eliminar.
+ * - Si se elimina recarga la página y si no muestra un mensaje de error.
+ */
 function removeFromCart(bikeId) {
     fetch('/cart/remove', {
         method: 'POST',
@@ -60,21 +94,18 @@ function removeFromCart(bikeId) {
     });
 }
 
-//Se actualiza el contador del botón del carrito y activa la animación
-function updateCartCount(reset) {
+/**
+ * Actualiza el contador del carrito y activa la animación.
+ * - Suma 1 al contador actual
+ */
+function updateCartCount() {
     const badge = document.getElementById('cart-count');
     let current = parseInt(badge.textContent);
 
-    if (reset === 0) {
-        badge.textContent = 0;
-    } else {
-        badge.textContent = current + 1;
-    }
+    badge.textContent = current + 1;
 
     badge.classList.remove('flash');
-    setTimeout(() => {
-        badge.classList.add('flash');
-    }, 10);
+    setTimeout(() => badge.classList.add('flash'), 10);
 }
 
 

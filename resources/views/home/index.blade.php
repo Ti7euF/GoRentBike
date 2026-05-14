@@ -15,16 +15,13 @@
     </header>
 
     <div class="control-bar">
-        <fieldset class="group-filters">
-            <input type="radio" name="bike-type" id="all" checked>
-            <label for="all" class="filter">Todas</label>
-
-            <input type="radio" name="bike-type" id="mountain">
-            <label for="mountain" class="filter">Montaña</label>
-
-            <input type="radio" name="bike-type" id="road">
-            <label for="road" class="filter">Carretera</label>
-        </fieldset>
+        <div class="group-filters">
+            <select id="bikeType" class="grb-input">
+                <option value="all">Todas</option>
+                <option value="mountain">Montaña</option>
+                <option value="road">Carretera</option>
+            </select>
+        </div>
 
         <div class="date-filter">
             <input type="date" name="startDate" id="startDate" class="grb-input" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">

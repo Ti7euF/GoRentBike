@@ -55,6 +55,7 @@
 
 <section>
     <table class="grb-table">
+        <caption>Listado de movimientos</caption>
         <thead>
             <tr>
                 <th>Fecha</th>

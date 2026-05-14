@@ -26,6 +26,12 @@
             <a href="{{ route('maintenance.viewAddMaintenance') }}" class="grb-btn grb-btn-success">
                 <i class="fa-solid fa-plus"></i> Iniciar mantenimento
             </a>
+            <form action="{{ route('export.pdf') }}" method="POST" data-export-pdf="true">
+            @csrf
+                <input type="hidden" name="html">
+                <input type="hidden" name="title">
+                <button type="submit" class="order-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
+            </form>
         </div>
 
         <div class="order">
@@ -52,4 +58,5 @@
 </section>
 
 <script src="/assets/js/maintenance.js"></script>
+<script src="/assets/js/pdf.js"></script>
 @endsection

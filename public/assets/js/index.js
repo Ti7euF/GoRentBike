@@ -1,17 +1,41 @@
+/**
+ * Script de página inicial
+ *
+ * - Barra de control (carga dinámica, ordenación y paginación) y slideshow
+ */
 document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
 
-    const radios = document.querySelectorAll('input[name="bike-type"]');
+    const bikeTypeSelect = document.getElementById("bikeType");
     const startInput = document.getElementById('startDate');
     const endInput = document.getElementById('endDate');
     const orderButtons = document.querySelectorAll(".order-btn");
 
-    //Evento cambio filtro
-    radios.forEach(radio => {
-        radio.addEventListener("change", () => {
-            currentPage = 1;
-            loadBikes();
-        });
+    function loadBikes() {
+        const filter = bikeTypeSelect.value;
+        const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "asc";
+        const startDate = startInput.value;
+        const endDate = endInput.value;
+        
+        const url = `/?page=${currentPage}&filter=${filter}&sort=${sort}&startDate=${startDate}&endDate=${endDate}`;
+
+        fetch(url, {
+            method: "GET",
+            headers: { "X-Requested-With": "XMLHttpRequest" }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector("#group-bikes").innerHTML = data.html;
+            document.querySelector(".paginate").innerHTML = data.pagination;
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+
+    // Evento cambio select
+    bikeTypeSelect.addEventListener("change", () => {
+        currentPage = 1;
+        loadBikes();
     });
 
     //Evento cambio fecha
@@ -41,26 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
             loadBikes();
         });
     });
-
-    function loadBikes() {
-        const filter = document.querySelector('input[name="bike-type"]:checked')?.id ?? "all";
-        const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "asc";
-        const startDate = startInput.value;
-        const endDate = endInput.value;
-        
-        const url = `/?page=${currentPage}&filter=${filter}&sort=${sort}&startDate=${startDate}&endDate=${endDate}`;
-
-        fetch(url, {
-            method: "GET",
-            headers: { "X-Requested-With": "XMLHttpRequest" }
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.querySelector("#group-bikes").innerHTML = data.html;
-            document.querySelector(".paginate").innerHTML = data.pagination;
-        })
-        .catch(error => console.error("Error:", error));
-    }
 
     //Cuando se cambia de página
     window.changePage = function(page) {
