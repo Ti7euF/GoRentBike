@@ -79,7 +79,6 @@ grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] 
     background-color: var(--green-base);
     background-image: var(--green-grad);
     border: 0.1rem solid var(--green-dark);
-    text-shadow: 0 -0.1rem 0 rgba(0,0,0,.35);
 }
 
     .grb-btn-success:hover {
@@ -105,13 +104,22 @@ grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] 
     background-color: var(--red-base);
     background-image: var(--red-grad);
     border: 0.1rem solid var(--red-dark);
-    text-shadow: 0 -0.1rem 0 rgba(0,0,0,.35);
 }
 
     .grb-btn-danger:hover {
         background-image: linear-gradient(to bottom, #e15c5c, #c73434);
     }
 
+/*amarillo*/
+.grb-btn-warning {
+    background-color: var(--yellow-base);
+    background-image: var(--yellow-grad);
+    border: 0.1rem solid var(--yellow-dark);
+}
+
+    .grb-btn-warning:hover {
+        background-image: linear-gradient(to bottom, #f1c40f, #c29d0b);
+    }
 
 /* -------------------------------------------------- */
 /* Barra de control */
@@ -183,8 +191,8 @@ grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] 
 /* -------------------------------------------------- */
 /* Acciones */
 .actions {
-    /* display: flex;
-    align-items: center; */
+    display: flex;
+    align-items: center;
     gap: 0.6rem;
     order: -1;
 }
@@ -407,12 +415,6 @@ grb-input + input[type="checkbox"], .grb-input + label + input[type="checkbox"] 
 .status-default {
     background: var(--gray-500);
     color: white;
-}
-
-
-.actions {
-    display: flex;
-    gap: 0.8rem;
 }
 
 .error {

@@ -80,9 +80,9 @@
     --fondo: radial-gradient(circle at top, #ffffff 0%, #e6edf7 75%);
     --texto: #222;
 
-	--blue-base: #0066CC; /* antes era #8bb8ff */
+	--blue-base: #0066CC;
     --blue-light: #8bb8ff;
-    --blue-dark: #004c99; /* antes era #0066CC */
+    --blue-dark: #004c99;
     --blue-grad: linear-gradient(to bottom, var(--blue-light), var(--blue-base));
     --blue-grad-brillo: linear-gradient(to bottom, var(--blue-light), #a4c8ff);
 
@@ -110,13 +110,13 @@
     --info-light: #7fc3ef;
     --info-dark: #2c81ba;
 
-    --footer-bg: #eef3f9; /* antes era #f2f2f2 */
+    --footer-bg: #eef3f9;
     --footer-text: #333;
     --footer-link: #0066cc;
     --footer-link-hover: #0052a3;
 
     --card-bg: #ffffff;
-    --card-bg-hover: #f5f8ff; /* antes era #f0f0f0 */
+    --card-bg-hover: #f5f8ff;
 
     --card-border: rgba(0,0,0,0.08);
     --card-border-hover: var(--blue-base);

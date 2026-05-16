@@ -43,7 +43,17 @@ class BillingController extends Controller
             //Últimos 12
             $start = (clone $now)->modify('-12 months')->setTime(0, 0, 0);
         } else {
-            throw new Exception("Rango no válido");
+            $movements = [];
+            $chartData = [];
+
+            if ($request->ajax()) {
+                return response()->json([
+                        'html' => view('billing.partialBilling', ['income' => ['incomeTotal' => 0], 'expenses' => ['maintenanceExpenses' => 0], 'iva' => 0, 'benefit' => 0, 'movements' => $movements])->render(),
+                        'chartData' => $chartData
+                    ]);
+            }
+
+            return view('billing.index', ['income' => ['incomeTotal' => 0], 'expenses' => ['maintenanceExpenses' => 0], 'iva' => 0, 'benefit' => 0, 'movements' => $movements, 'chartData' => $chartData]);
         }
 
         $sort = $request->input('sort', 'desc');

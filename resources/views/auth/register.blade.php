@@ -20,7 +20,7 @@
                 <input name="email" type="text" class="grb-input" placeholder="Email" maxlength="100" required />
                 <input name="password" type="password" class="grb-input" placeholder="Contraseña" maxlength="30" required />
                 <input name="confirmPassword" type="password" class="grb-input" placeholder="Confirme contraseña" maxlength="30" required />
-                <button type="submit" class="grb-btn grb-btn-primary grb-btn-block grb-btn-large">Registro</button>
+                <button type="submit" class="grb-btn grb-btn-block grb-btn-large">Registro</button>
                 <p id="errorFirstName" class="validation">El nombre solo puede contener letras</p>
                 <p id="errorLastName" class="validation">Los apellidos solo pueden contener letras</p>
                 <p id="errorEmail" class="validation">Introduce un email válido (ej: prueba@prueba.es)</p>

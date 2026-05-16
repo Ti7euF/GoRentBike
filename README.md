@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="public/uploads/logo/logo-dark.png" width="300" alt="Go Rent Bike Logo">
+    <img src="/public/uploads/logo/logo-dark.png" width="300" alt="Go Rent Bike Logo">
 </p>
 
 <h1 align="center">Go Rent Bike Web</h1>

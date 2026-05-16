@@ -17,7 +17,6 @@
         <p>No se pudo completar la reserva. Inténtalo de nuevo más tarde.</p>
     @endif
 
-    {{-- <a href="{{ route('reservation.index') }}" class="btn">Ir a Mis Reservas</a> --}}
     <a href="{{ route('reservation.index') }}" class="grb-btn grb-btn-success">
         <i class="fa-solid fa-calendar-check"></i> Ir a Mis Reservas
     </a>

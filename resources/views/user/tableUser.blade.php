@@ -14,7 +14,7 @@
                     </ul>
                     <div class="actions">
                         @if (session('role') == 1 || session('userId') == $user->getIdUser())
-                            <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                         @endif
 
                         @if (session('role') == 1)
@@ -46,7 +46,7 @@
         <tbody>
             @if (empty($users))
                 <tr>
-                    <td colspan="5" class="no-results-table">
+                    <td colspan="7">
                         No hay usuarios con los filtros seleccionados.
                     </td>
                 </tr>
@@ -66,7 +66,7 @@
                     <td>
                         <div class="actions">
                             @if (session('role') == 1 || session('userId') == $user->getIdUser())
-                                <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn grb-btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('user.viewUpdateUser', ['idUser' => $user->getIdUser()]) }}" class="grb-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                             @endif
 
                             @if (session('role') == 1)

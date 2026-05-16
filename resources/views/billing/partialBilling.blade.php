@@ -37,20 +37,22 @@
 </section>
 
 <section class="grb-cards">
-    @forelse($movements as $mv)
+    @if (empty($movements))
+        <p class="no-results">No hay movimientos en el rango seleccionado.</p>
+    @else
+    @foreach($movements as $mv)
         <article class="grb-card">
             <div class="grb-card-info">
                 <h3 class="grb-card-title">{{ $mv['movementType'] }}</h3>
                 <ul class="grb-card-details">
-                    <li><strong>Fecha:</strong> {{ \Carbon\Carbon::parse($mv['movementDate'])->format('d/m/Y') }}</li>
+                    <li><strong>Fecha:</strong> {{ date('d/m/Y', strtotime($mv['movementDate'])) }}</li>
                     <li><strong>Concepto:</strong> {{ $mv['concept'] }}</li>
                     <li><strong>Cantidad:</strong> {{ number_format($mv['amount'], 2, ',', '.') }} €</li>
                 </ul>
             </div>
         </article>
-    @empty
-        <p class="no-results">No hay movimientos en este rango.</p>
-    @endforelse
+    @endforeach
+    @endif
 </section>
 
 <section>
@@ -67,7 +69,7 @@
         <tbody>
             @forelse($movements as $mv)
                 <tr>
-                    <td>{{ \Carbon\Carbon::parse($mv['movementDate'])->format('d/m/Y') }}</td>
+                    <td>{{ date('d/m/Y', strtotime($mv['movementDate'])) }}</td>
                     <td>{{ $mv['movementType'] }}</td>
                     <td>{{ $mv['concept'] }}</td>
                     <td>{{ number_format($mv['amount'], 2, ',', '.') }} €</td>

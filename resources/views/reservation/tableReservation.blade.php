@@ -10,8 +10,8 @@
 
                 <ul class="grb-card-details">
                     <li><strong>Cliente:</strong> {{ $res->getFirstName() }} {{ $res->getLastName() }}</li>
-                    <li><strong>Inicio:</strong> {{ $res->getStartDate() }}</li>
-                    <li><strong>Fin:</strong> {{ $res->getEndDate() }}</li>
+                    <li><strong>Inicio:</strong> {{ date('d/m/Y', strtotime($res->getStartDate())) }}</li>
+                    <li><strong>Fin:</strong> {{ date('d/m/Y', strtotime($res->getEndDate())) }}</li>
                     <li><strong>Precio:</strong> {{ number_format($res->getPrice(), 2) }} €</li>
                     <li><span class="status-badge {{ $res->getStatusClass() }}">{{ $res->getReservationStatus() }}</span></li>
                 </ul>
@@ -41,13 +41,13 @@
                         <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
                             @csrf
                             <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                            <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
+                            <button type="submit" class="grb-btn">Recepcionar</button>
                         </form>
                     @endif
 
                     {{-- Formulario técnico (estado == 5) --}}
                     @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
-                        <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
+                        <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn">Revisar bicicleta</a>
                     @endif
                 </div>
             </div>
@@ -73,7 +73,7 @@
         <tbody>
             @if (empty($reservation))
                 <tr>
-                    <td colspan="8" class="no-results-table">
+                    <td colspan="8">
                         No hay reservas con los filtros seleccionados.
                     </td>
                 </tr>
@@ -83,8 +83,8 @@
                     <td>{{ $res->getIdReservation() }}</td>
                     <td>{{ $res->getIdBike() }}</td>
                     <td>{{ $res->getFirstName() }} {{ $res->getLastName() }}</td>
-                    <td>{{ $res->getStartDate() }}</td>
-                    <td>{{ $res->getEndDate() }}</td>
+                    <td>{{ date('d/m/Y', strtotime($res->getStartDate())) }}</td>
+                    <td>{{ date('d/m/Y', strtotime($res->getEndDate())) }}</td>
                     <td>{{ number_format($res->getPrice(), 2) }} €</td>
                     <td><span class="status-badge {{ $res->getStatusClass() }}">{{ $res->getReservationStatus() }}</span></td>
                     <td>
@@ -114,13 +114,13 @@
                                 <form method="POST" action="{{ route('reservation.receive') }}" onsubmit="return confirm('¿Recepcionar bicicleta?')">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $res->getIdReservation() }}">
-                                    <button type="submit" class="grb-btn grb-btn-primary">Recepcionar</button>
+                                    <button type="submit" class="grb-btn">Recepcionar</button>
                                 </form>
                             @endif
 
                             {{-- Formulario técnico (estado == 5) --}}
                             @if ((session('role') == 1 || session('role') == 2) && $res->getIdReservationStatus() == 5)
-                                <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn grb-btn-warning">Revisar bicicleta</a>
+                                <a href="{{ route('reservation.supervising', ['id' => $res->getIdReservation()]) }}" class="grb-btn">Revisar bicicleta</a>
                             @endif
                         </div>
                     </td>

@@ -29,7 +29,7 @@
             @endif
         </div>
 
-        <ul class="mobile-links">
+        <ul>
             <li><a href="{{ route('home') }}"><i class="fa-solid fa-bicycle"></i> Bicicletas</a></li>
             <li><a href="{{ route('reservation.index') }}"><i class="fa-solid fa-calendar-check"></i> Reservas</a></li>
             @if (session()->has('userId') && (session('role') == 1 || session('role') == 3))

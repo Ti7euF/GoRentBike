@@ -13,7 +13,7 @@ use App\Http\Controllers\PdfController;
 
 //ANOTACION: "get/post" indica a qué tipo de solicitud responde la ruta
 //           "view" es para rutas estáticas
-//           "/..." indica la ruta que parecerá en el navegador
+//           "/..." indica la ruta que del navegador
 //           "[PruebaController::class, 'metodo']" indica a qué metodo de qué controlador se llama
 //           "name('prueba')" indica el nombre o alias a usar
 

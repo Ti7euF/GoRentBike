@@ -8,8 +8,8 @@
                 <h3 class="grb-card-title">Mantenimiento #{{ $mnt->getIdMaintenance() }}</h3>
                 <ul class="grb-card-details">
                     <li><strong>Bicicleta:</strong> {{ $mnt->getBikeName() }}</li>
-                    <li><strong>Inicio:</strong> {{ $mnt->getStartDate() }}</li>
-                    <li><strong>Fin:</strong> {{ $mnt->getEndDate() }}</li>
+                    <li><strong>Inicio:</strong> {{ date('d/m/Y H:i', strtotime($mnt->getStartDate())) }}</li>
+                    <li><strong>Fin:</strong> {{ date('d/m/Y H:i', strtotime($mnt->getEndDate())) }}</li>
                     <li><strong>Técnico:</strong> {{ $mnt->getUserName() }}</li>
                     <li><strong>Coste:</strong>                         
                         @if($mnt->getCost() !== null)
@@ -20,7 +20,7 @@
                 </ul>
                 <div class="actions">
                     @if ($mnt->getEndDate() === null && (session('role') == 1 || session('userId') == $mnt->getIdUser()))
-                        <a href="{{ route('maintenance.viewUpdateMaintenance', ['idMaintenance' => $mnt->getIdMaintenance()]) }}" class="grb-btn grb-btn-primary">Finalizar mantenimiento</a>
+                        <a href="{{ route('maintenance.viewUpdateMaintenance', ['idMaintenance' => $mnt->getIdMaintenance()]) }}" class="grb-btn">Finalizar mantenimiento</a>
                     @endif
                 </div>
             </div>
@@ -45,7 +45,7 @@
         <tbody>
             @if (empty($maintenances))
                 <tr>
-                    <td colspan="7" class="no-results-table">
+                    <td colspan="7">
                         No hay mantenimientos con los filtros seleccionados.
                     </td>
                 </tr>
@@ -54,8 +54,8 @@
                 <tr>
                     <td>{{ $mnt->getIdMaintenance() }}</td>
                     <td>{{ $mnt->getBikeName() }}</td>
-                    <td>{{ $mnt->getStartDate() }} </td>
-                    <td>{{ $mnt->getEndDate() }}</td>
+                    <td>{{ date('d/m/Y H:i', strtotime($mnt->getStartDate())) }} </td>
+                    <td>{{ date('d/m/Y H:i', strtotime($mnt->getEndDate())) }}</td>
                     <td>{{ $mnt->getUserName() }}</td>
                     <td>{{ $mnt->getDescription() }}</td>
                     <td>
@@ -66,7 +66,7 @@
                     <td>
                         <div class="actions">
                             @if ($mnt->getEndDate() === null && (session('role') == 1 || session('userId') == $mnt->getIdUser()))
-                                <a href="{{ route('maintenance.viewUpdateMaintenance', ['idMaintenance' => $mnt->getIdMaintenance()]) }}" class="grb-btn grb-btn-primary">Finalizar mantenimiento</a>
+                                <a href="{{ route('maintenance.viewUpdateMaintenance', ['idMaintenance' => $mnt->getIdMaintenance()]) }}" class="grb-btn">Finalizar mantenimiento</a>
                             @endif
                         </div>
                     </td>

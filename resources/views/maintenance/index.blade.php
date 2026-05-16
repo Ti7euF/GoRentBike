@@ -19,7 +19,7 @@
     <div class="control-bar">
         <div class="group-filters">
             <input type="text" id="search" name="search" class="grb-input" placeholder="Buscar por técnico o bicicleta." style="width:auto; margin-bottom:0">
-            <button class="grb-btn grb-btn-primary" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="grb-btn" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         
         <div class="actions">
@@ -30,7 +30,7 @@
             @csrf
                 <input type="hidden" name="html">
                 <input type="hidden" name="title">
-                <button type="submit" class="order-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
+                <button type="submit" class="grb-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
             </form>
         </div>
 

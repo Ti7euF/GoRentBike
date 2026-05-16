@@ -21,7 +21,7 @@
         <div class="control-bar">
             <div class="group-filters search-box">
                 <input type="text" id="search" name="search" class="grb-input" placeholder="Buscar por nombre, email o ID..." style="width:auto; margin-bottom:0">
-                <button class="grb-btn grb-btn-primary" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="grb-btn" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div class="order">
                 <span class="order-label">Ordenar por ID:</span>

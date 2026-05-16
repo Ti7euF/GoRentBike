@@ -49,6 +49,10 @@
         text-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.4);
     }
 
+.card-login-body {
+    margin-bottom: 1.3rem;
+}
+
 .card-login-footer {
     margin-top: 0.8rem;
     text-align: center;

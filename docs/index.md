@@ -1,6 +1,6 @@
 # Go Rent Bike 📚
 
-Bienvenido a la documentación oficial del proyecto **Go Rent Bike**, una plataforma desarrollada para la empresa *Go Rent Bike* con el objetivo de gestionar el alquiler de bicicletas y accesorios de forma online.
+Bienvenido a la documentación oficial del proyecto **Go Rent Bike**, una plataforma desarrollada para la empresa *Go Rent Bike* con el objetivo de gestionar el alquiler de bicicletas de forma online.
 
 Esta documentación incluye:
 

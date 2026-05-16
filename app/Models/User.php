@@ -70,7 +70,7 @@ class User
     public function isActive(): bool {
         return $this->active;
     }
-    public function setActivo(bool $active): void {
+    public function setActive(bool $active): void {
         $this->active = $active;
     }
 

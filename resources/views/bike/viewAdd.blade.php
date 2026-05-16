@@ -67,15 +67,15 @@
         <button type="submit" class="grb-btn grb-btn-success grb-btn-large grb-btn-block">Agregar</button>
         <a href="{{ route('bike.index') }}" class="grb-btn grb-btn-danger grb-btn-large grb-btn-block">Volver</a>
         
-        <p id="errorBrand" class="validation">Máximo 50 caracteres (marca).</p>
-        <p id="errorModel" class="validation">Máximo 50 caracteres (modelo).</p>
-        <p id="errorDailyPrice" class="validation">Introduce un precio diario válido.</p>
-        <p id="errorFrame" class="validation">Máximo 50 caracteres (cuadro).</p>
-        <p id="errorGear" class="validation">Máximo 50 caracteres (transmisión).</p>
-        <p id="errorBrakes" class="validation">Máximo 50 caracteres (frenos).</p>
-        <p id="errorSuspension" class="validation">Máximo 50 caracteres (suspension).</p>
-        <p id="errorTires" class="validation">Máximo 50 caracteres (ruedas).</p>
-        <p id="errorSeatpost" class="validation">Máximo 50 caracteres (sillín).</p>
+        <p id="errorBrand" class="validation">El campo marca debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorModel" class="validation">El campo modelo debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorDailyPrice" class="validation">El campo precio debe ser un número válido.</p>
+        <p id="errorFrame" class="validation">El campo cuadro debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorGear" class="validation">El campo transmisión debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorBrakes" class="validation">El campo frenos debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorSuspension" class="validation">El campo suspensión debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorTires" class="validation">El campo ruedas debe tener entre 1 y 50 caracteres.</p>
+        <p id="errorSeatpost" class="validation">El campo sillín debe tener entre 1 y 50 caracteres.</p>
 
     </form>
 </section>

@@ -98,7 +98,7 @@
                     <input type="hidden" name="idBike" value="{{ $bike->getIdBike() }}">
                     <input type="hidden" name="nameBike" value="{{ $bike->getBrand() . '' . $bike->getModel() }}">
                     <input type="file" name="images[]" id="inputAddImage" accept="image/*" multiple style="display:none">
-                    <button type="button" class="grb-btn grb-btn-primary" id="btnAddImage" title="Selecccione una o varias imágenes para asociarlas a la bicicleta"><i class="fa-solid fa-image"></i> Añadir imagen</button>
+                    <button type="button" class="grb-btn" id="btnAddImage" title="Selecccione una o varias imágenes para asociarlas a la bicicleta"><i class="fa-solid fa-image"></i> Añadir imagen</button>
                 </form>
             </div>
         </div>

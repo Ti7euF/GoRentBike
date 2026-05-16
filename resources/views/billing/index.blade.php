@@ -32,7 +32,7 @@
             @csrf
                 <input type="hidden" name="html">
                 <input type="hidden" name="title">
-                <button type="submit" class="order-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
+                <button type="submit" class="grb-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
             </form>
         </div>
 

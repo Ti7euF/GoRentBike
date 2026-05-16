@@ -30,8 +30,8 @@
                         <p class="grb-card-type">{{ $bike->getType() }}</p>
 
                         <ul class="grb-card-details">
-                            <li><strong>Desde:</strong> {{ $bike->getStartDate() }}</li>
-                            <li><strong>Hasta:</strong> {{ $bike->getEndDate() }}</li>
+                            <li><strong>Desde:</strong> {{ date('d/m/Y H:i', strtotime($bike->getStartDate())) }}</li>
+                            <li><strong>Hasta:</strong> {{ date('d/m/Y 23:59', strtotime($bike->getEndDate())) }}</li>
                             <li><strong>Días:</strong> {{ $bike->getRentalDays() }}</li>
                             <li><strong>Precio/día:</strong> {{ number_format($bike->getDailyPrice(), 2) }} €</li>
                             <li><strong>Descuento:</strong> {{ $bike->getDiscount() }}%</li>
@@ -75,8 +75,8 @@
                                 </h3>
                                 <p class="bike-type">{{ $bike->getType() }}</p>
                             </td>
-                            <td class="cart-date">{{ $bike->getStartDate() }}</td>
-                            <td class="cart-date">{{ $bike->getEndDate() }}</td>
+                            <td class="cart-date">{{ date('d/m/Y H:i', strtotime($bike->getStartDate())) }}</td>
+                            <td class="cart-date">{{ date('d/m/Y 23:59', strtotime($bike->getEndDate())) }}</td>
                             <td class="cart-date">{{ $bike->getRentalDays() }}</td>
                             <td class="cart-date">{{ number_format($bike->getDailyPrice(), 2) }} €</td>                            
                             <td class="cart-date">

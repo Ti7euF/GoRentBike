@@ -17,7 +17,7 @@
                 @csrf
                 <input name="email" type="text" class="grb-input" placeholder="Email" maxlength="100" minlength="1" required />
                 <input name="password" type="password" class="grb-input" placeholder="Contraseña" maxlength="30" required />
-                <button type="submit" class="grb-btn grb-btn-primary grb-btn-block grb-btn-large">Acceder</button>
+                <button type="submit" class="grb-btn grb-btn-block grb-btn-large">Acceder</button>
                 
             </form>
         </section>

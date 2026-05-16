@@ -2,14 +2,14 @@
 
 ## ¿Qué es Go Rent Bike?
 
-Go Rent Bike es una aplicación web desarrollada con Laravel cuyo objetivo es permitir a los clientes alquilar bicicletas y accesorios de forma online, así como ofrecer a la empresa herramientas internas de gestión.
+Go Rent Bike es una aplicación web desarrollada con Laravel cuyo objetivo es permitir a los clientes alquilar bicicletas de forma online, así como ofrecer a la empresa herramientas internas de gestión.
 
 ## Propósito del proyecto
 
 El propósito principal es **digitalizar el proceso de alquiler**, permitiendo:
 
 - Reservas online desde cualquier dispositivo
-- Gestión centralizada de bicicletas, accesorios y disponibilidad
+- Gestión centralizada de bicicletas y disponibilidad
 - Acceso a paneles internos para empleados
 
 ## Problema que resuelve
@@ -31,4 +31,4 @@ Go Rent Bike soluciona estos problemas ofreciendo una plataforma unificada y acc
 - **Administradores** que gestionan el catálogo y la disponibilidad.
 
 
-[ Volver al índice](index.md)
+[⬅ Volver al índice](index.md)
