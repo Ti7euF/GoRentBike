@@ -71,6 +71,36 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPage = page;
         loadBikes();
     };
+
+
+    //Crea un objeto imagen para cada ruta y aplica un fadeOut, cambia la imagen y aplica un fadeIn a la nueva
+    const slides = [
+        { src: "/uploads/promo/descuentos_dias.webp", alt: "Descuentos por días de reserva."},
+        { src: "/uploads/promo/dos_rutas.webp", alt: "Elige tu ruta." }
+    ];
+
+    const img = document.getElementById("promoSliderImg");
+    if (!img) {
+        return;
+    }
+
+    slides.forEach(s => { const pre = new Image(); pre.src = s.src; });
+
+    let index = 0;
+    const changeImage = () => {
+        $(img).fadeOut(700, function () {
+            img.src = slides[index].src;
+            img.alt = slides[index].alt;
+
+            $(img).fadeIn(700);
+        });
+    };
+
+    changeImage();
+    setInterval(() => {
+        index = (index + 1) % slides.length;
+        changeImage();
+    }, 4000);
 });
 
 
@@ -102,4 +132,9 @@ document.querySelectorAll('.slideshow').forEach(slideshow => {
 
     slideshow.addEventListener('mouseenter', start);
     slideshow.addEventListener('mouseleave', stop);
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
 });

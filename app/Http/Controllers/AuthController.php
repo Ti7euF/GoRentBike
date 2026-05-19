@@ -89,7 +89,13 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'No se pudo crear la cuenta. Intenta de nuevo más tarde.');    
         }
 
-        $this->openSession($user);
+        $createdUser = $this->repo->findByEmail($email);
+
+        if (!$createdUser) {
+            return redirect()->back()->with('error', 'Usuario creado pero no se pudo recuperar.');
+        }
+
+        $this->openSession($createdUser);
 
         return redirect()->route('home');
     }

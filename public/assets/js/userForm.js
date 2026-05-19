@@ -77,24 +77,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Eventos blur
     firstName.addEventListener('blur', () => {
-        errorFirstName.style.display = isFirstNameValid() ? 'none' : 'block';
+        if (isFirstNameValid()) {
+            $('#errorFirstName').hide();
+        } else {
+            $('#errorFirstName').show();
+        }
     });
 
     lastName.addEventListener('blur', () => {
-        errorLastName.style.display = isLastNameValid() ? 'none' : 'block';
+        if (isLastNameValid()) {
+            $('#errorLastName').hide();
+        } else {
+            $('#errorLastName').show();
+        }
     });
 
     email.addEventListener('blur', () => {
-        errorEmail.style.display = isEmailValid() ? 'none' : 'block';
+        if (isEmailValid()) {
+            $('#errorEmail').hide();
+        } else {
+            $('#errorEmail').show();
+        }
     });
 
     if (password) {
         password.addEventListener('blur', () => {
-            errorPassword.style.display = isPasswordValid() ? 'none' : 'block';
+            if (isConfirmPasswordValid()) {
+                $('#errorPassword').hide();
+            } else {
+                $('#errorPassword').show();
+            }
         });
 
         confirmPassword.addEventListener('blur', () => {
-            errorConfirmPassword.style.display = isConfirmPasswordValid() ? 'none' : 'block';
+            if (isConfirmPasswordValid()) {
+                $('#errorConfirmPassword').hide();
+            } else {
+                $('#errorConfirmPassword').show();
+            }
         });
     }
 });

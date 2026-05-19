@@ -245,7 +245,7 @@ img, button {
 		text-align: center;
 	}
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
 	.main {
         margin: 0.7rem 1.4rem;
 	}

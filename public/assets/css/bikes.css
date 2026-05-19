@@ -6,7 +6,7 @@
 }
 	
 /* Tablet */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     #group-bikes {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
     }

@@ -106,11 +106,17 @@
             <div class="card-summary">
                 <h3 class="grb-billing-title">Resumen del carrito</h3>
 
-                <ul class="summary-list">
+                <button id="btnBreakdown" class="btn-breakdown"><i class="fa-solid fa-chevron-down"></i>Mostrar desglose</button>
+
+                <ul id="summaryBreakdown">
                     <li><strong>Subtotal:</strong> {{ number_format($subtotal, 2) }} €</li>
                     <li><strong>IVA (21%):</strong> {{ number_format($iva, 2) }} €</li>
+                </ul>
+
+                <ul>
                     <li><strong>Total:</strong> {{ number_format($total, 2) }} €</li>
                 </ul>
+
 
                 <form method="POST" action="/reservation/checkout">
                     @csrf

@@ -109,3 +109,24 @@ function updateCartCount() {
 }
 
 
+/**
+ * Oculta/Muestra el desglose del carrito con un slide.
+ * - Al hacer clic sobre el botón hace el slide y cuando acaba cambia el botón
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    $('#btnBreakdown').on('click', function () {
+        const panel = $('#summaryBreakdown');
+        const btn = $(this);
+
+        panel.slideToggle(250, function () {
+            if (panel.is(':visible')) {
+                btn.html('<i class="fa-solid fa-chevron-up"></i> Ocultar desglose');
+            } else {
+                btn.html('<i class="fa-solid fa-chevron-down"></i> Mostrar desglose');
+            }
+        });
+    });
+});
+
+
+
