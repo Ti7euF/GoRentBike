@@ -10,6 +10,12 @@
 @section('content')
 
 <section>
+    <section class="promo-slider" aria-label="Promociones">
+        <figure class="promo-frame">
+            <img id="promoSliderImg" class="promo-img" width="1535" height="200" alt="">
+        </figure>
+    </section>
+
     <header class="titulo">
         <h2>Alquiler de bicicletas</h2>
     </header>

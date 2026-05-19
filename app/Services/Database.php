@@ -6,7 +6,7 @@ class Database {
 
     public function __construct() {
         try {    
-            $this->pdo = new \PDO("mysql:host=localhost;dbname=gorentbike", "root", "");
+            $this->pdo = new \PDO("mysql:host=localhost;dbname=gorentbike", "gorentbike_user", "Test123!");
 
         } catch (\PDOException $e) {
             die('No se pudo conectar a la base de datos.');
