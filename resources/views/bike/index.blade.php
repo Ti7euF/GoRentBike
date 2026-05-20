@@ -24,12 +24,6 @@
             <a href="{{ route('bike.viewAddBike') }}" class="grb-btn grb-btn-success">
                 <i class="fa-solid fa-plus"></i> Nueva bicicleta
             </a>
-            <form action="{{ route('export.pdf') }}" method="POST" data-export-pdf="true">
-            @csrf
-                <input type="hidden" name="html">
-                <input type="hidden" name="title">
-                <button type="submit" class="grb-btn">Exportar <i class="fa-regular fa-file-pdf"></i></button>
-            </form>
         </div>
 
         <div class="order">

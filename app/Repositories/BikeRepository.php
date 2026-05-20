@@ -13,9 +13,9 @@ class BikeRepository
         $this->db = $db;
     }
 
-    public function getAvailableBikes(?int $offset, ?int $limit, string $filter, string $sort, ?string $startDate = null, ?string $endDate = null): array {
-        // $limit = (int)$limit;
-        // $offset = (int)$offset;
+    public function getAvailableBikes(int $offset, int $limit, string $filter, string $sort, ?string $startDate = null, ?string $endDate = null): array {
+        $limit = (int)$limit;
+        $offset = (int)$offset;
         $params = [];
 
         $sql = "SELECT idBike, idStatusBike, brand, model, type, dailyPrice, active, frame, gear, brakes, suspension, tires, seatpost
@@ -49,12 +49,7 @@ class BikeRepository
             $sql .= " ORDER BY dailyPrice DESC";
         }
 
-        //$sql .= " LIMIT $limit OFFSET $offset";
-        if (!empty($limit) && !empty($offset)) {
-            $limit = (int)$limit;
-            $offset = (int)$offset;
-            $sql .= " LIMIT $limit OFFSET $offset";
-        }
+        $sql .= " LIMIT $limit OFFSET $offset";
 
         $result = $this->db->query($sql, $params);
 
