@@ -54,9 +54,10 @@ class MaintenanceController extends Controller
             return redirect()->route('login');
         }
 
-        $bikes = $this->repoBike->getAvailableBikes(null, null, 'all', 'asc');
-
         $currentDateTime = date('Y-m-d\TH:i');
+        $tomorrow = date('Y-m-d\TH:i', strtotime('+1 day'));
+
+        $bikes = $this->repoBike->getAvailableBikesForMaintenance($currentDateTime, $tomorrow);
 
         return view('maintenance.viewAdd', ['bikes' => $bikes, 'currentDateTime' => $currentDateTime]);
     }

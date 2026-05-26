@@ -429,4 +429,58 @@ class BikeRepository
 
         return $result;
     }
+
+    public function getAvailableBikesForMaintenance(string $startDate, string $endDate): array {
+        $params = [];
+
+        $sql = "SELECT idBike, idStatusBike, brand, model, type, dailyPrice, active, frame, gear, brakes, suspension, tires, seatpost
+                FROM bike
+                WHERE active = 1 AND idStatusBike = 1";
+
+        if ($startDate && $endDate) {
+            $sql .= " AND NOT EXISTS (
+                SELECT 1
+                FROM reservation r
+                WHERE r.idBike = bike.idBike
+                AND r.idReservationStatus = :status
+                AND r.startDate <= :endDate
+                AND r.endDate >= :startDate
+            )";
+
+            $params['status'] = 1;
+            $params['startDate'] = $startDate;
+            $params['endDate'] = $endDate;
+        }
+
+        $result = $this->db->query($sql, $params);
+
+        if (empty($result)) {
+            return [];
+        }
+
+        $bikes = [];
+
+        foreach ($result as $row) {
+            $bike = new Bike(
+                $row['idBike'],
+                $row['idStatusBike'],
+                $row['brand'],
+                $row['model'],
+                $row['type'],
+                (bool)$row['active']
+            );
+
+            $bike->setDailyPrice($row['dailyPrice'] ?? null);
+            $bike->setFrame($row['frame'] ?? null);
+            $bike->setGear($row['gear'] ?? null);
+            $bike->setBrakes($row['brakes'] ?? null);
+            $bike->setSuspension($row['suspension'] ?? null);
+            $bike->setTires($row['tires'] ?? null);
+            $bike->setSeatpost($row['seatpost'] ?? null);
+
+            $bikes[$row['idBike']] = $bike;
+        }
+
+        return $bikes;
+    }
 }
