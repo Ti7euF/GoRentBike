@@ -55,7 +55,7 @@
                     <td>{{ $mnt->getIdMaintenance() }}</td>
                     <td>{{ $mnt->getBikeName() }}</td>
                     <td>{{ date('d/m/Y H:i', strtotime($mnt->getStartDate())) }} </td>
-                    <td>{{ date('d/m/Y H:i', strtotime($mnt->getEndDate())) }}</td>
+                    <td>{{ $mnt->getEndDate() ? date('d/m/Y H:i', strtotime($mnt->getEndDate())) : '-' }}</td>
                     <td>{{ $mnt->getUserName() }}</td>
                     <td>{{ $mnt->getDescription() }}</td>
                     <td>
