@@ -90,7 +90,9 @@
                                 </span>
                             </td>
                             <td class="cart-remove">
-                                <button type="button" onclick="removeFromCart({{ $bike->getIdBike() }})"><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" class="grb-btn grb-btn-danger" aria-label="Eliminar bicicleta del carrito" onclick="removeFromCart({{ $bike->getIdBike() }})">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
