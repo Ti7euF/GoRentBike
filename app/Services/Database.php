@@ -5,8 +5,13 @@ class Database {
     private $pdo;
 
     public function __construct() {
-        try {    
-            $this->pdo = new \PDO("mysql:host=localhost;dbname=gorentbike", "gorentbike_user", "Test123!");
+        try {
+            $host = getenv('DB_HOST');
+            $dbname = getenv('DB_DATABASE');
+            $user = getenv('DB_USERNAME');
+            $pass = getenv('DB_PASSWORD');
+
+            $this->pdo = new \PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 
         } catch (\PDOException $e) {
             die('No se pudo conectar a la base de datos.');
