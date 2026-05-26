@@ -90,11 +90,7 @@
                                 </span>
                             </td>
                             <td class="cart-remove">
-                                <form method="POST" onsubmit="removeFromCart({{ $bike->getIdBike() }})">
-                                    <button type="submit" class="grb-btn grb-btn-danger" aria-label="Eliminar bicicleta del carrito">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
+                                <button type="button" onclick="removeFromCart({{ $bike->getIdBike() }})"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     @endforeach
