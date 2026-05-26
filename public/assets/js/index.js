@@ -4,6 +4,8 @@
  * - Barra de control (carga dinámica, ordenación y paginación) y slideshow
  */
 document.addEventListener("DOMContentLoaded", () => {
+    initSlideshows();
+    
     let currentPage = 1;
 
     const bikeTypeSelect = document.getElementById("bikeType");
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.querySelector("#group-bikes").innerHTML = data.html;
             document.querySelector(".paginate").innerHTML = data.pagination;
+            initSlideshows();
         })
         .catch(error => console.error("Error:", error));
     }
@@ -106,35 +109,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Selecciona todos los slideshow, mete las img a un array, si el evento es hover: 
 //quita y añade clases cada 3 segundos para ocultar/mostrar la foto actual/siguiente
-document.querySelectorAll('.slideshow').forEach(slideshow => {
-    const slides = Array.from(slideshow.querySelectorAll('img'));
-    let index = 0;
-    let interval = null;
+function initSlideshows() {
+    document.querySelectorAll('.slideshow').forEach(slideshow => {
+        const slides = Array.from(slideshow.querySelectorAll('img'));
+        let index = 0;
+        let interval = null;
 
-    const start = () => {
-        if (interval !== null) return;
+        const start = () => {
+            if (interval !== null) return;
 
-        interval = setInterval(() => {
-            slides[index].classList.remove('show');
-            slides[index].classList.add('hide');
+            interval = setInterval(() => {
+                slides[index].classList.remove('show');
+                slides[index].classList.add('hide');
 
-            index = (index + 1) % slides.length;
+                index = (index + 1) % slides.length;
 
-            slides[index].classList.remove('hide');
-            slides[index].classList.add('show');
-        }, 2000);
-    };
+                slides[index].classList.remove('hide');
+                slides[index].classList.add('show');
+            }, 2000);
+        };
 
-    const stop = () => {
-        clearInterval(interval);
-        interval = null;
-    };
+        const stop = () => {
+            clearInterval(interval);
+            interval = null;
+        };
 
-    slideshow.addEventListener('mouseenter', start);
-    slideshow.addEventListener('mouseleave', stop);
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-});
+        slideshow.addEventListener('mouseenter', start);
+        slideshow.addEventListener('mouseleave', stop);
+    });
+}
