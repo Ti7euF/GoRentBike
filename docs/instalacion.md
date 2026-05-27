@@ -70,7 +70,7 @@ Para ejecutar el proyecto localmente se necesitan:
   ```
   ```sql
   CREATE DATABASE gorentbike CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-  CREATE USER 'gorentbike_user'@'localhost' IDENTIFIED BY 'Pass';
+  CREATE USER 'gorentbike_user'@'localhost' IDENTIFIED BY 'Test123!';
   GRANT ALL PRIVILEGES ON gorentbike.* TO 'gorentbike_user'@'localhost';
   FLUSH PRIVILEGES;
   ```

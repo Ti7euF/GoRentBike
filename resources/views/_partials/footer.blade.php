@@ -6,8 +6,6 @@
 <ul>
     <li><h4>Go Rent Bike</h4></li>
     <li><a href="{{ route('home') }}">Bicicletas</a></li>
-    <li><a href="#">Accesorios</a></li>
-    <li><a href="#">Preguntas frecuentes</a></li>
 </ul>
 
 <ul>
