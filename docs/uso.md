@@ -15,6 +15,7 @@
 - Consultar historial de mantenimientos
 
 ### Empleado de facturación
+- Entregar y recepcionar bicicletas
 - Consultar ingresos/gastos
 
 ### Administrador
