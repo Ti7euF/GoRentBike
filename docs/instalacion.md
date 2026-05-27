@@ -54,6 +54,37 @@ Para ejecutar el proyecto localmente se necesitan:
 - Configurar y linkear el servidor
   ```bash
   sudo nano /etc/nginx/sites-available/gorentbike
+  ```
+
+  ```bash
+  server {
+      listen 80;
+      server_name gorentbike.ddns.net;
+
+      root /var/www/GoRentBike/public;
+      index index.php index.html;
+
+      location / {
+          try_files $uri $uri/ /index.php?$query_string;
+      }
+
+      location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+
+          fastcgi_param HTTP_COOKIE $http_cookie;
+
+          fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+          fastcgi_param DOCUMENT_ROOT $realpath_root;
+      }
+
+      location ~ /\. {
+          deny all;
+      }
+  }
+  ```
+  
+  ```bash
   sudo ln -s /etc/nginx/sites-available/gorentbike /etc/nginx/sites-enabled/
   ```
 
