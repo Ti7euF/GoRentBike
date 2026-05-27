@@ -66,7 +66,7 @@ Encapsulan el acceso a la base de datos, separando las consultas SQL de los cont
 | Facturación | Consultar datos económicos |
 | Administrador | Gestión completa del sistema |
 
- ## Diseño responsive
+## Diseño responsive
 Se ha desarrollado con el enfoque "Mobile First" y se utilizan media queries para adaptar la visualización a:
 - Escritorio
 - Tablet
