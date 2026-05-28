@@ -14,7 +14,7 @@ Se proporcionan dos versiones de logotipo para garantizar una buena visibilidad 
 
 **Logo a color** (para fondos oscuros):
 
-![Logo color](public/uploads/logo/logo-light.webp)
+![Logo color](./img/logo-light.webp)
 
 - Colores usados: Azul `#1582CE` · Naranja `#FC6827`
 - Pensado para usarse sobre fondos oscuros
@@ -25,7 +25,7 @@ Se proporcionan dos versiones de logotipo para garantizar una buena visibilidad 
 
 **Logo en negro** (para fondos claros):
 
-![Logo negro](public/uploads/logo/logo-dark.webp)
+![Logo negro](./img/logo-dark.webp)
 
 - Color usado: Negro `#000000`
 - Pensado para usarse sobre fondos claros o blancos
