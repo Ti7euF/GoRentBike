@@ -5,6 +5,7 @@ Bienvenido a la documentación oficial del proyecto **Go Rent Bike**, una plataf
 Esta documentación incluye:
 
 - [Introducción](introduccion.md)
+- [Guía de Estilo](guia-estilo.md)
 - [Instalación](instalacion.md)
 - [Arquitectura](arquitectura.md)
 - [Uso](uso.md)
