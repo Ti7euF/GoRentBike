@@ -78,7 +78,7 @@ class UserController extends Controller
         $firstName = $request->input('firstName');
         $lastName = $request->input('lastName');
         $email = $request->input('email');
-        $newRole = $request->input('role', null);
+        $newRole = $request->input('idRole', null);
         $password = $request->input('password');
         $confirmPassword = $request->input('confirmPassword');
     

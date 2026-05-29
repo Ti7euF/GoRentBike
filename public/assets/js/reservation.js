@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadReservations() {
         const filter = reservationStatusSelect.value;
-        const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "asc";
+        const sort = document.querySelector(".order-btn.active")?.dataset.sort ?? "desc";
         
         const url = `/reservation?page=${currentPage}&filter=${filter}&sort=${sort}`;
 
