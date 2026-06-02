@@ -141,7 +141,7 @@ class MaintenanceController extends Controller
         $totalCost = floatval($cost) + $workCost;
         $hours = ceil(($minutes / 60) * 10) / 10;
 
-        $description .= "\n$hours hora/s de mano de obra: ($workCost) €.";
+        $description .= "\n$hours hora/s de mano de obra: ($workCost €) .";
 
         $maintenance->setCost($totalCost);
         $maintenance->setDescription($description);
