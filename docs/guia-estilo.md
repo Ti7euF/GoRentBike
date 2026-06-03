@@ -1,4 +1,10 @@
-# Guía de Estilos
+---
+layout: default
+title: Guía de Estilo
+nav_order: 3
+---
+
+# Guía de Estilo
 
 ## Introducción
 
