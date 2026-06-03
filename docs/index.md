@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Índice
+title: Go Rent Bike
 nav_order: 1
 ---
 
-# Go Rent Bike 📚
+# Go Rent Bike
 
 Bienvenido a la documentación oficial del proyecto **Go Rent Bike**, una plataforma desarrollada para la empresa *Go Rent Bike* con el objetivo de gestionar el alquiler de bicicletas de forma online.
 
