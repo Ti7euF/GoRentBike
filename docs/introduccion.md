@@ -1,3 +1,9 @@
+---
+layout: default
+title: Introducción
+nav_order: 1
+---
+
 # Introducción
 
 ## ¿Qué es Go Rent Bike?
