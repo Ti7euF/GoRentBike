@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Índice
+title: Instalación
 nav_order: 4
 ---
 
