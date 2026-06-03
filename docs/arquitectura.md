@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Índice
+title: Arquitectura
 nav_order: 5
 ---
 
