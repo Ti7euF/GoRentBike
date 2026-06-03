@@ -1,3 +1,9 @@
+---
+layout: default
+title: Índice
+nav_order: 7
+---
+
 # Conclusiones
 
 ## Dificultades encontradas
