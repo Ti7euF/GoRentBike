@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Índice
+title: Conclusiones
 nav_order: 7
 ---
 
