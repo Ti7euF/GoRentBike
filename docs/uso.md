@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Índice
+title: Uso
 nav_order: 6
 ---
 
