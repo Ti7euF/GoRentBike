@@ -1,3 +1,9 @@
+---
+layout: default
+title: Índice
+nav_order: 8
+---
+
 # Referencias
 
 - [Laravel Documentation](https://laravel.com/docs)
