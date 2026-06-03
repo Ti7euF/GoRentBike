@@ -1,3 +1,9 @@
+---
+layout: default
+title: Índice
+nav_order: 4
+---
+
 # Instalación
 
 ## Requisitos previos
