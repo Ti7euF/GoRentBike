@@ -1,3 +1,9 @@
+---
+layout: default
+title: Índice
+nav_order: 5
+---
+
 # Arquitectura del Proyecto
 
 ## Enfoque general
