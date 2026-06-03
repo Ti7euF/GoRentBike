@@ -1,3 +1,9 @@
+---
+layout: default
+title: Índice
+nav_order: 6
+---
+
 # Uso del Proyecto
 
 ## Funcionalidades para clientes
